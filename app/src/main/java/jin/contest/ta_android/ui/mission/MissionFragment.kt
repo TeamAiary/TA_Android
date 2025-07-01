@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import jin.contest.ta_android.databinding.FragmentHomeBinding
+import jin.contest.ta_android.databinding.FragmentMissionBinding
 
 class MissionFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentMissionBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,10 +25,10 @@ class MissionFragment : Fragment() {
         val missionViewModel =
             ViewModelProvider(this).get(MissionViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentMissionBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textMission
         missionViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
