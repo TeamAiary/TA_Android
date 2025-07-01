@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="jin.contest.ta_android.ui.mission.MissionFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_mission"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="jin.contest.ta_android.ui.diary.DiaryFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_mission"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="jin.contest.ta_android.ui.mypage.MyPageFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_my_page"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
