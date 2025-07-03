@@ -1,13 +1,13 @@
-package jin.contest.ta_android.ui.mission
+package jin.contest.ta_android.ui.report
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MissionViewModel : ViewModel() {
+class ReportViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is mission Fragment"
+        value = "This is report Fragment"
     }
     val text: LiveData<String> = _text
 }
