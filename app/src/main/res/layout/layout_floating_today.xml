@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F9F6F1"
+    android:padding="8dp"
+    android:elevation="8dp"
+    android:clipToPadding="false"
+    android:layout_margin="8dp"
+    android:gravity="center_horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="-24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/iv_bear"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/momo"
+                android:contentDescription="곰돌이" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_today_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="오늘의 한마디"
+                    android:textStyle="bold"
+                    android:textColor="#1A1A4B"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_today_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Be Happy."
+                    android:textColor="#222222"
+                    android:textSize="18sp"
+                    android:layout_marginTop="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <Button
+        android:id="@+id/btn_write_diary"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="0dp"
+        android:backgroundTint="#8DAA9D"
+        android:text="일기 작성하기"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:drawableStart="@android:drawable/ic_menu_edit"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:drawablePadding="12dp" />
+
+</LinearLayout> 
