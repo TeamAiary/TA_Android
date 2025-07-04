@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_mission">
+    app:startDestination="@+id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_mission"
@@ -16,6 +16,19 @@
         android:name="jin.contest.ta_android.ui.diary.DiaryFragment"
         android:label="@string/title_diary"
         tools:layout="@layout/fragment_diary" />
+
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="jin.contest.ta_android.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_my_page" />
+
+    <fragment
+        android:id="@+id/navigation_report"
+        android:name="jin.contest.ta_android.ui.report.ReportFragment"
+        android:label="@string/title_my_page"
+        tools:layout="@layout/fragment_my_page" />
 
     <fragment
         android:id="@+id/navigation_my_page"

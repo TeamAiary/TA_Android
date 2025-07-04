@@ -3,13 +3,23 @@
 
     <item
         android:id="@+id/navigation_mission"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_mission" />
 
     <item
         android:id="@+id/navigation_diary"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_diary" />
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+    <item
+        android:id="@+id/navigation_report"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_report" />
+
 
     <item
         android:id="@+id/navigation_my_page"
