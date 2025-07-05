@@ -55,9 +55,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
+                        android:text="주간 리포트"
                         android:textColor="#666666"
-                        android:textSize="16sp"
-                        tools:text="주간 리포트" />
+                        android:textSize="16sp" />
 
                     <ImageView
                         android:id="@+id/iv_arrow"
@@ -150,7 +150,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/tv_counsel_link"
+                android:id="@+id/tv_counsel_link_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="상담 링크"
@@ -158,6 +158,31 @@
                 android:textSize="16sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginStart="24dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_counsel_link"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <TextView
+                    android:id="@+id/tv_counsel_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="상담 링크를 클릭하세요"
+                    android:textColor="#222222"
+                    android:textSize="16sp"
+                    android:padding="16dp" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- 스크롤을 위한 하단 여백 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="32dp" />
         </LinearLayout>
     </ScrollView>
 
