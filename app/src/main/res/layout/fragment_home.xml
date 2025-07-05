@@ -42,27 +42,31 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp">
 
                     <TextView
-                        android:id="@+id/tv_weekly_report"
+                        android:id="@+id/tv_weekly_report_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="주간 리포트"
-                        android:textColor="#666666"
-                        android:textSize="16sp"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="16dp" />
+                        android:textColor="#666666"
+                        android:textSize="16sp"
+                        tools:text="주간 리포트" />
 
                     <ImageView
                         android:id="@+id/iv_arrow"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@android:drawable/bottom_bar"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="16dp" />
+                        android:src="@drawable/arrow_back"
+                        android:contentDescription="상세보기" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
@@ -71,18 +75,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
+                android:background="@drawable/bg_days_container"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="16dp"
+                android:padding="12dp"
                 android:layout_marginEnd="16dp">
 
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
-                <CheckBox android:layout_width="32dp" android:layout_height="32dp" />
+                <CheckBox
+                    android:id="@+id/cb_monday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="월요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_tuesday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="화요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_wednesday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="수요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_thursday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="목요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_friday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="금요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_saturday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="토요일" />
+
+                <CheckBox
+                    android:id="@+id/cb_sunday"
+                    style="@style/CustomCheckbox"
+                    android:contentDescription="일요일" />
+
             </LinearLayout>
 
             <TextView
