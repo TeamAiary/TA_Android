@@ -1,5 +1,6 @@
 package jin.contest.ta_android.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import jin.contest.ta_android.databinding.FragmentHomeBinding
+import jin.contest.ta_android.WritingActivity
 
 class HomeFragment : Fragment() {
 
@@ -26,7 +28,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        binding.floatingToday.btnWriteDiary.setOnClickListener {
+            val intent = Intent(requireActivity(), WritingActivity::class.java)
+            startActivity(intent)
+        }
         return root
     }
 
