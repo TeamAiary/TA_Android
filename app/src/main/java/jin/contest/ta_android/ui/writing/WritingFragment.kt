@@ -8,7 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import jin.contest.ta_android.R
-import android.util.Log
+import android.widget.TextView
+import android.widget.Button
+import android.app.AlertDialog
+import android.content.Intent
+import jin.contest.ta_android.EmotionActivity
 
 
 class WritingFragment : Fragment() {
@@ -34,6 +38,10 @@ class WritingFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val textViewDate = view.findViewById<TextView>(R.id.textViewDate)
+        val currentDate = java.text.SimpleDateFormat("yyyy년 MM월 dd일", java.util.Locale.getDefault()).format(java.util.Date())
+        textViewDate.text = currentDate
 
         val btnWeather = view.findViewById<ImageButton>(R.id.btnWeather)
         val iconSun = view.findViewById<ImageButton>(R.id.iconSun)
@@ -66,6 +74,24 @@ class WritingFragment : Fragment() {
         iconSnow.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_snow)
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
+        }
+
+        val buttonSave = view.findViewById<Button>(R.id.buttonSave)
+
+        buttonSave.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("저장 확인")
+                .setMessage("이대로 저장하시겠습니까?")
+                .setNegativeButton("아니오") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("예") { dialog, _ ->
+                    val intent = Intent(requireContext(), EmotionActivity::class.java)
+                    startActivity(intent)
+                    dialog.dismiss()
+                }
+
+                .show()
         }
     }
 
