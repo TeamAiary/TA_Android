@@ -27,17 +27,17 @@
             android:id="@+id/iconHappy"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/icon_sun"
+            android:src="@drawable/icon_happy"
             android:background="@android:color/transparent"
-            android:contentDescription="해" />
+            android:contentDescription="행복" />
 
         <ImageButton
             android:id="@+id/iconDepress"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/icon_cloudy"
+            android:src="@drawable/icon_depress"
             android:background="@android:color/transparent"
-            android:contentDescription="구름"
+            android:contentDescription="우울"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
 
@@ -45,9 +45,9 @@
             android:id="@+id/iconAngry"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/icon_rain"
+            android:src="@drawable/icon_angry"
             android:background="@android:color/transparent"
-            android:contentDescription="비" />
+            android:contentDescription="화남" />
 
     </LinearLayout>
         <TextView
