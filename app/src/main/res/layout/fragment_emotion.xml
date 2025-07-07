@@ -8,14 +8,82 @@
     android:background="@drawable/bg_gradient"
     tools:context=".ui.emotion.EmotionFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="EmotionFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_marginTop="16dp">
+
+        <ImageButton
+            android:id="@+id/iconHappy"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_sun"
+            android:background="@android:color/transparent"
+            android:contentDescription="해" />
+
+        <ImageButton
+            android:id="@+id/iconDepress"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_cloudy"
+            android:background="@android:color/transparent"
+            android:contentDescription="구름"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <ImageButton
+            android:id="@+id/iconAngry"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_rain"
+            android:background="@android:color/transparent"
+            android:contentDescription="비" />
+
+    </LinearLayout>
+        <TextView
+            android:id="@+id/textGuideSeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="오늘의 기분 지수"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+        <TextView
+            android:id="@+id/textViewGaugeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarGauge"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:max="99"
+            android:progress="0" />
+
+        <Button
+            android:id="@+id/button_to_home"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:text="저장하기"
+            app:cornerRadius="5dp"
+            app:backgroundTint="#D2B48C"
+        />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

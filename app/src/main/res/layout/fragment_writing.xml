@@ -119,6 +119,6 @@
         app:cornerRadius="10dp"
         android:textColor="#FFFFFF"
         app:backgroundTint="#D2B48C"
-        android:text="저장하기"
+        android:text="작성 완료!"
         android:layout_marginTop="16dp"/>
 </LinearLayout>

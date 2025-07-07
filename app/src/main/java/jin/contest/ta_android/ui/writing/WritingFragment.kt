@@ -81,13 +81,13 @@ class WritingFragment : Fragment() {
         buttonSave.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("저장 확인")
-                .setMessage("이대로 저장하시겠습니까?")
-                .setNegativeButton("아니오") { dialog, _ ->
-                    dialog.dismiss()
-                }
+                .setMessage("이대로 작성을 완료하시겠습니까?")
                 .setPositiveButton("예") { dialog, _ ->
                     val intent = Intent(requireContext(), EmotionActivity::class.java)
                     startActivity(intent)
+                    dialog.dismiss()
+                }
+                .setNegativeButton("아니오") { dialog, _ ->
                     dialog.dismiss()
                 }
 
