@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import jin.contest.ta_android.R
+import android.util.Log
 
 
 class WritingFragment : Fragment() {
@@ -38,28 +39,33 @@ class WritingFragment : Fragment() {
         val iconSun = view.findViewById<ImageButton>(R.id.iconSun)
         val iconCloud = view.findViewById<ImageButton>(R.id.iconCloud)
         val iconRain = view.findViewById<ImageButton>(R.id.iconRain)
+        val iconSnow = view.findViewById<ImageButton>(R.id.iconSnow)
 
         btnWeather.setOnClickListener {
             if (iconsVisible) {
-                hideIcons(iconSun, iconCloud, iconRain)
+                hideIcons(iconSun, iconCloud, iconRain, iconSnow)
             } else {
-                showIcons(iconSun, iconCloud, iconRain)
+                showIcons(iconSun, iconCloud, iconRain, iconSnow)
             }
         }
 
         iconSun.setOnClickListener {
-            btnWeather.setBackgroundResource(R.drawable.icon_sun)
-            hideIcons(iconSun, iconCloud, iconRain)
+            btnWeather.setImageResource(R.drawable.icon_sun)
+            hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
 
         iconCloud.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_cloudy)
-            hideIcons(iconSun, iconCloud, iconRain)
+            hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
 
         iconRain.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_rain)
-            hideIcons(iconSun, iconCloud, iconRain)
+            hideIcons(iconSun, iconCloud, iconRain, iconSnow)
+        }
+        iconSnow.setOnClickListener {
+            btnWeather.setImageResource(R.drawable.icon_snow)
+            hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
     }
 
