@@ -27,11 +27,7 @@ class DiaryFragment : Fragment() {
 
         _binding = FragmentDiaryBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textDiary
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        
         return root
     }
 
