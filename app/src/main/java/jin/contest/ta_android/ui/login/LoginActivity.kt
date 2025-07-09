@@ -48,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
 
         // 회원가입
         binding.tvSignUp.setOnClickListener {
-            Toast.makeText(this, "회원가입 기능은 추후 구현 예정입니다", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 } 
