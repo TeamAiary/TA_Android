@@ -5,6 +5,18 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+
+    <!-- 기본 색상 -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- 베이지 색상 팔레트 -->
+    <color name="light_beige">#F5F5DC</color>
+    <color name="medium_beige">#E6D7C3</color>
+    <color name="dark_beige">#D2B48C</color>
+    <color name="warm_beige">#DEB887</color>
+    <color name="accent_brown">#8B7355</color>
+    <color name="text_dark">#5D4E37</color>
+    <color name="beige_white">#FFFFF8</color>
 </resources>

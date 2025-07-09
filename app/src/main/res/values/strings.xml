@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">TA_Android</string>
+    <string name="app_name">Aiary</string>
     <string name="title_mission">미션</string>
     <string name="title_diary">내가 쓴 일기</string>
     <string name="title_my_page">마이 페이지</string>
     <string name="title_home">홈</string>
     <string name="title_report">리포트</string>
+    <string-array name="role_array">
+        <item>ADMIN</item>
+        <item>PATIENT</item>
+        <item>EXPERT</item>
+    </string-array>
 </resources>
