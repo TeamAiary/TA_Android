@@ -1,0 +1,92 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+
+        android:padding="12dp"
+        android:elevation="5dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/tvDay"
+                android:text="12"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/tvWeekday"
+                android:text="Mon"
+                android:textSize="17sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp">
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/tvTitle"
+                android:text="인공지능 다이어리"
+                android:textSize="16sp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/ivWeather"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_sun"
+                android:contentDescription="Weather" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginEnd="5dp"
+            android:paddingStart="12dp">
+
+            <ImageView
+                android:id="@+id/ivEmotion"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/icon_happy"
+                android:layout_gravity="center"
+                android:contentDescription="Emotion" />
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:id="@+id/tvScore"
+                android:text="100"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="#777"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

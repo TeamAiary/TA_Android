@@ -36,5 +36,3 @@
             android:screenOrientation="portrait"
             android:label="회원가입" />
     </application>
-
-</manifest>
