@@ -14,6 +14,7 @@ object RetrofitClient {
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
+        .addInterceptor(AuthInterceptor())
         .build()
 
     val apiService: ApiService by lazy {
@@ -24,4 +25,5 @@ object RetrofitClient {
             .build()
             .create(ApiService::class.java)
     }
+
 } 
