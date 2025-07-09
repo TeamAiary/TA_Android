@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:id="@+id/tvDay"
                 android:text="12"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:id="@+id/tvWeekday"
                 android:text="Mon"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:gravity="center"/>
         </LinearLayout>
 
