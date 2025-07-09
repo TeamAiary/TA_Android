@@ -20,10 +20,13 @@ class SignUpViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = repository.registerUser(request)
-                if (response.isSuccessful && response.body() != null) {
-                    _signUpResult.value = Result.success(response.body()!!)
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    val resultBody = body ?: SignUpResponse(message = "회원가입이 완료되었습니다.")
+                    _signUpResult.value = Result.success(resultBody)
                 } else {
-                    val errorMsg = response.errorBody()?.string() ?: "알 수 없는 오류"
+                    val errorMsg = response.errorBody()?.string()?.takeIf { it.isNotBlank() }
+                        ?: "서버 오류가 발생했습니다. (${response.code()})"
                     _signUpResult.value = Result.failure(Exception(errorMsg))
                 }
             } catch (e: Exception) {
@@ -31,4 +34,5 @@ class SignUpViewModel : ViewModel() {
             }
         }
     }
+
 } 

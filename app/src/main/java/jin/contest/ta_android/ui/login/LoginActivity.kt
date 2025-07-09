@@ -3,13 +3,18 @@ package jin.contest.ta_android.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import jin.contest.ta_android.MainActivity
+import androidx.lifecycle.Observer
+import jin.contest.ta_android.data.model.LogInRequest
+import jin.contest.ta_android.data.model.LogInResponse
 import jin.contest.ta_android.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private val viewModel: LogInViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +34,19 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+            viewModel.logIn(email,password)
+            viewModel.logInResult.observe(this, Observer { result ->
+                result.onSuccess { response ->
+                    Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
+                    // 로그인 성공 시 메인 화면으로 이동 등
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                result.onFailure { e ->
+                    Toast.makeText(this, "이메일과 비밀번호를 확인해주세요.", Toast.LENGTH_SHORT).show()
+                }
+            })
 
-            // 로그인 성공 시 메인 화면으로 이동
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
         }
 
         // Google 로그인 버튼
