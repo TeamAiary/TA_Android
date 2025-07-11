@@ -60,6 +60,17 @@
                         android:textColor="#666666"
                         android:textSize="16sp" />
 
+                    <TextView
+                        android:id="@+id/tv_weekly_report_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_weekly_report_title"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="8dp"
+                        android:text="리포트 내용"
+                        android:textColor="#222222"
+                        android:textSize="14sp" />
+
                     <ImageView
                         android:id="@+id/iv_arrow"
                         android:layout_width="24dp"
