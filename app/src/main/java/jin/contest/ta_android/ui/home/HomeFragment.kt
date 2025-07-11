@@ -8,14 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import jin.contest.ta_android.data.remote.RetrofitClient
+import jin.contest.ta_android.data.repository.DiaryRepository
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.databinding.FragmentHomeBinding
+import jin.contest.ta_android.ui.diary.DiaryViewModel
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var diaryViewModel: DiaryViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +46,21 @@ class HomeFragment : Fragment() {
         })
 
         homeViewModel.fetchWeeklyReports()
+
+        // 일기 ViewModel에 DiaryRepository 주입
+        val diaryRepository = DiaryRepository(apiService)
+        diaryViewModel = ViewModelProvider(this, DiaryViewModel.Factory(diaryRepository))[DiaryViewModel::class.java]
+
+        diaryViewModel.diaries.observe(viewLifecycleOwner, Observer { diaries ->
+            if (diaries.isNotEmpty()) {
+                val firstDiary = diaries[0]
+                binding.tvDiaryContent.text = firstDiary.title
+            } else {
+                binding.tvDiaryContent.text = "일기가 없습니다."
+            }
+        })
+        // 예시: 2025년 7월, page=0, size=12로 호출
+        diaryViewModel.fetchAllDiaries(2025, 7, 0, 12)
 
         return root
     }
