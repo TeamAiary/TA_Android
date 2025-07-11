@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import jin.contest.ta_android.data.remote.RetrofitClient
+import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,15 +25,20 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root = binding.root
 
+        // ViewModel에 ReportRepository 주입
+        val apiService = RetrofitClient.apiService
+        val reportRepository = ReportRepository(apiService)
+        homeViewModel = ViewModelProvider(this, HomeViewModel.Factory(reportRepository))[HomeViewModel::class.java]
+
         homeViewModel.weeklyReports.observe(viewLifecycleOwner, Observer { reports ->
             if (reports.isNotEmpty()) {
                 val firstReport = reports[0]
                 binding.tvWeeklyReportTitle.text = firstReport.title
-                // content용 TextView가 없으므로, 아래에 추가 필요
-                // binding.tvWeeklyReportContent.text = firstReport.content
+                // content용 TextView가 레이아웃에 추가되어 있다면 아래 코드 사용
+                binding.tvWeeklyReportContent.text = firstReport.content
             } else {
                 binding.tvWeeklyReportTitle.text = "리포트가 없습니다."
-                // binding.tvWeeklyReportContent.text = ""
+                binding.tvWeeklyReportContent.text = ""
             }
         })
 
