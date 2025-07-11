@@ -14,5 +14,21 @@ class EmotionActivity : AppCompatActivity() {
                 .replace(R.id.emotion_fragment_container, EmotionFragment.newInstance())
                 .commitNow()
         }
+        val title = intent.getStringExtra("title") ?: ""
+        val content = intent.getStringExtra("content") ?: ""
+        val resultWeather = intent.getStringExtra("resultWeather") ?: ""
+
+        val bundle = Bundle().apply {
+            putString("title", title)
+            putString("content", content)
+            putString("resultWeather", resultWeather)
+        }
+
+        val emotionFragment = EmotionFragment()
+        emotionFragment.arguments = bundle
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.emotion_fragment_container, emotionFragment)
+            .commit()
     }
 }
