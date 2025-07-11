@@ -12,13 +12,16 @@ import android.widget.TextView
 import android.widget.Button
 import android.app.AlertDialog
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import jin.contest.ta_android.EmotionActivity
+import jin.contest.ta_android.ui.emotion.EmotionFragment
 import jin.contest.ta_android.MainActivity
 import jin.contest.ta_android.databinding.FragmentWritingBinding
 import jin.contest.ta_android.data.model.WritingRequest
 import jin.contest.ta_android.ui.login.LogInViewModel
+
 
 class WritingFragment : Fragment() {
 
@@ -30,6 +33,9 @@ class WritingFragment : Fragment() {
     private var _binding: FragmentWritingBinding? = null
     private val binding get() = _binding!!
 
+    var resultWeather = String()
+    var title = String()
+    var content = String()
 
     private val viewModel: WritingViewModel by viewModels()
 
@@ -52,7 +58,6 @@ class WritingFragment : Fragment() {
         val textViewDate = view.findViewById<TextView>(R.id.textViewDate)
         val currentDate = java.text.SimpleDateFormat("yyyy년 MM월 dd일", java.util.Locale.getDefault()).format(java.util.Date())
         textViewDate.text = currentDate
-        var resultWeather = String()
         val btnWeather = view.findViewById<ImageButton>(R.id.btnWeather)
         val iconSun = view.findViewById<ImageButton>(R.id.iconSun)
         val iconCloud = view.findViewById<ImageButton>(R.id.iconCloud)
@@ -71,24 +76,24 @@ class WritingFragment : Fragment() {
 
         iconSun.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_sun)
-            resultWeather="맑음"
+            resultWeather="SUNNY"
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
 
         iconCloud.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_cloudy)
-            resultWeather="흐림"
+            resultWeather="CLOUDY"
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
 
         iconRain.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_rain)
-            resultWeather="비"
+            resultWeather="RAINNY"
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
         iconSnow.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_snow)
-            resultWeather="눈"
+            resultWeather="SNOWY"
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
 
@@ -99,19 +104,15 @@ class WritingFragment : Fragment() {
                 .setTitle("저장 확인")
                 .setMessage("이대로 작성을 완료하시겠습니까?")
                 .setPositiveButton("예") { dialog, _ ->
-                    val title = binding.editTextTitle.text.toString()
-                    val content = binding.editTextDiary.text.toString()
+                    title = binding.editTextTitle.text.toString()
+                    content = binding.editTextDiary.text.toString()
 
-                    if (title.isEmpty() || content.isEmpty()){
-                        Toast.makeText(activity, "일기를 작성해주세요", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(requireContext(), EmotionActivity::class.java).apply {
+                        putExtra("title", binding.editTextTitle.text.toString())
+                        putExtra("content", binding.editTextDiary.text.toString())
+                        putExtra("resultWeather", resultWeather)
                     }
-                    val request = WritingRequest(
-                        title = title,
-                        content = content,
-                        weather = resultWeather
-                    )
-                    viewModel.submitPost(request)
-                    observeViewModel()
+                    startActivity(intent)
                     dialog.dismiss()
                 }
                 .setNegativeButton("아니오") { dialog, _ ->
@@ -140,17 +141,5 @@ class WritingFragment : Fragment() {
         iconsVisible = false
     }
 
-    private fun observeViewModel() {
-        viewModel.writingResult.observe(viewLifecycleOwner) { result ->
-            result.onSuccess { response ->
-                Toast.makeText(requireContext(), "보내기 성공!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(requireContext(), EmotionActivity::class.java)
-                startActivity(intent)
-            }
-            result.onFailure { e ->
-                Toast.makeText(requireContext(), "보내기에 실패하였습니다.", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
 
 }
