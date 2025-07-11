@@ -4,47 +4,44 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import jin.contest.ta_android.data.remote.RetrofitClient
+import jin.contest.ta_android.data.repository.DiaryRepository
 import jin.contest.ta_android.databinding.FragmentDiaryBinding
-import androidx.recyclerview.widget.RecyclerView
-import jin.contest.ta_android.R
-import androidx.recyclerview.widget.LinearLayoutManager
 
 class DiaryFragment : Fragment() {
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: DiaryAdapter
-    private lateinit var diaryList: List<DiaryItem>
+    private var _binding: FragmentDiaryBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var diaryViewModel: DiaryViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_diary, container, false)
-        recyclerView = view.findViewById(R.id.diaryRecyclerView)
+        _binding = FragmentDiaryBinding.inflate(inflater, container, false)
+        val root = binding.root
 
-        // 예시 데이터
-        diaryList = listOf(
-            DiaryItem("12", "Mon", "대학교",R.drawable.icon_sun, R.drawable.icon_angry,"100"),
-            DiaryItem("11", "Sun", "알바",R.drawable.icon_snow,R.drawable.icon_depress,"90"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100"),
-            DiaryItem("9", "Fri", "공부", R.drawable.icon_cloudy,R.drawable.icon_happy,"100")
-        )
+        // ViewModel에 DiaryRepository 주입
+        val apiService = RetrofitClient.apiService
+        val diaryRepository = DiaryRepository(apiService)
+        diaryViewModel = ViewModelProvider(this, DiaryViewModel.Factory(diaryRepository))[DiaryViewModel::class.java]
 
-        adapter = DiaryAdapter(diaryList)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
+        diaryViewModel.diaries.observe(viewLifecycleOwner, Observer { diaries ->
+            // TODO: 일기 리스트를 UI에 반영 (예: RecyclerView adapter에 submitList)
+            // 예시: binding.recyclerView.adapter.submitList(diaries)
+        })
 
-        return view
+        // 예시: 2025년 7월, page=0, size=12로 호출
+        diaryViewModel.fetchAllDiaries(2025, 7, 0, 12)
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
