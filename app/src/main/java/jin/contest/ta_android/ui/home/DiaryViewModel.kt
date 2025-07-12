@@ -1,4 +1,4 @@
-package jin.contest.ta_android.ui.diary
+package jin.contest.ta_android.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

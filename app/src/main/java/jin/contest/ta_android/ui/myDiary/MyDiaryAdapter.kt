@@ -1,6 +1,5 @@
-package jin.contest.ta_android.ui.diary
+package jin.contest.ta_android.ui.myDiary
 
-import android.media.Image
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import android.widget.ImageView
@@ -19,8 +18,8 @@ data class DiaryItem(
     val score: String
 )
 
-class DiaryAdapter(private val items: List<DiaryItem>) :
-    RecyclerView.Adapter<DiaryAdapter.DiaryViewHolder>() {
+class MyDiaryAdapter(private val items: List<DiaryItem>) :
+    RecyclerView.Adapter<MyDiaryAdapter.DiaryViewHolder>() {
 
     inner class DiaryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvDay: TextView = itemView.findViewById(R.id.tvDay)

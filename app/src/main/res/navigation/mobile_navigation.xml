@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_diary"
-        android:name="jin.contest.ta_android.ui.diary.DiaryFragment"
+        android:name="jin.contest.ta_android.ui.myDiary.MyDiaryFragment"
         android:label="@string/title_diary"
-        tools:layout="@layout/fragment_diary" />
+        tools:layout="@layout/fragment_my_diary" />
 
 
     <fragment

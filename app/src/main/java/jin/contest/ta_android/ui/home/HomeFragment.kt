@@ -1,5 +1,6 @@
 package jin.contest.ta_android.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import jin.contest.ta_android.WritingActivity
 import jin.contest.ta_android.data.remote.RetrofitClient
 import jin.contest.ta_android.data.repository.DiaryRepository
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.databinding.FragmentHomeBinding
-import jin.contest.ta_android.ui.diary.DiaryViewModel
 
 class HomeFragment : Fragment() {
 
@@ -61,7 +62,10 @@ class HomeFragment : Fragment() {
         })
         // 예시: 2025년 7월, page=0, size=12로 호출
         diaryViewModel.fetchAllDiaries(2025, 7, 0, 12)
-
+        binding.floatingToday.btnWriteDiary.setOnClickListener {
+            val intent = Intent(requireActivity(), WritingActivity::class.java)
+            startActivity(intent)
+        }
         return root
     }
 
