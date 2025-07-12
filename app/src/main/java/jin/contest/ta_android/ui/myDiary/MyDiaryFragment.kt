@@ -5,12 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import jin.contest.ta_android.databinding.FragmentMyDiaryBinding
 import jin.contest.ta_android.R
+import androidx.appcompat.app.AlertDialog
+import java.util.Calendar
 import androidx.recyclerview.widget.RecyclerView
 import jin.contest.ta_android.ui.home.DiaryViewModel
 
@@ -31,27 +34,8 @@ class MyDiaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        adapter = MyDiaryAdapter(emptyList())
-        binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.diaryRecyclerView.adapter = adapter
+        selectYear()
 
-        viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
-            Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
-            val items = diaries.map { diary ->
-                DiaryItem(
-                    day = diary.createdAt.substring(8, 10),
-                    weekday = getWeekdayFromDate(diary.createdAt),
-                    title = diary.title,
-                    preview = diary.preview,
-                    weather = getWeatherIcon(diary.weather.uppercase()),
-                    emotion = getEmotionIcon(diary.emotion.lowercase()),
-                    score = "${diary.emotionPoint}점"
-                )
-            }
-            adapter.updateItems(items)
-        }
-
-        viewModel.loadDiaries(2025, 7, 0, 12)
     }
 
     override fun onDestroyView() {
@@ -91,5 +75,61 @@ class MyDiaryFragment : Fragment() {
             "RAINY" -> R.drawable.icon_rain
             else -> R.drawable.icon_snow
         }
+    }
+    private fun selectYear(){
+        binding.buttonYear.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.year_month_picker, null)
+
+            val yearPicker = dialogView.findViewById<NumberPicker>(R.id.yearPicker)
+            val monthPicker = dialogView.findViewById<NumberPicker>(R.id.monthPicker)
+
+            val now = Calendar.getInstance()
+            val currentYear = now.get(Calendar.YEAR)
+            val currentMonth = now.get(Calendar.MONTH) + 1
+
+            yearPicker.minValue = 2000
+            yearPicker.maxValue = currentYear + 5
+            yearPicker.value = currentYear
+
+            monthPicker.minValue = 1
+            monthPicker.maxValue = 12
+            monthPicker.value = currentMonth
+
+            AlertDialog.Builder(requireContext())
+                .setTitle("연도/월 선택")
+                .setView(dialogView)
+                .setNegativeButton("취소", null)
+                .setPositiveButton("확인") { _, _ ->
+                    var selectedYear = yearPicker.value
+                    var selectedMonth = monthPicker.value
+                    binding.buttonYear.text = "${selectedYear}년 ${selectedMonth}월"
+                    floatNode(selectedYear, selectedMonth)
+                }
+                .show()
+        }
+
+    }
+    private fun floatNode(year : Int , month : Int){
+        adapter = MyDiaryAdapter(emptyList())
+        binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.diaryRecyclerView.adapter = adapter
+
+        viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
+            Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
+            val items = diaries.map { diary ->
+                DiaryItem(
+                    day = diary.createdAt.substring(8, 10),
+                    weekday = getWeekdayFromDate(diary.createdAt),
+                    title = diary.title,
+                    preview = diary.preview,
+                    weather = getWeatherIcon(diary.weather.uppercase()),
+                    emotion = getEmotionIcon(diary.emotion.lowercase()),
+                    score = "${diary.emotionPoint}점"
+                )
+            }
+            adapter.updateItems(items)
+        }
+
+        viewModel.loadDiaries(year, month, 0, 12)
     }
 }

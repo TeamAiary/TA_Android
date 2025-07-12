@@ -37,18 +37,8 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
                 android:backgroundTint="#D2B48C"
+                android:text="연도 / 월"></Button>
 
-                android:text="연도"></Button>
-
-            <Button
-                android:id="@+id/buttonMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
-                android:layout_marginStart="15dp"
-                android:backgroundTint="#D2B48C"
-                android:text="월"></Button>
         </LinearLayout>
 
     </LinearLayout>
