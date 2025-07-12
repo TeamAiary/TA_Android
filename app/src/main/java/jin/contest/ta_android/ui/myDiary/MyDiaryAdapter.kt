@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.LayoutInflater
 import jin.contest.ta_android.R
+import jin.contest.ta_android.databinding.ItemDiaryListBinding
 
 
 data class DiaryItem(
@@ -21,31 +22,28 @@ data class DiaryItem(
 class MyDiaryAdapter(private val items: List<DiaryItem>) :
     RecyclerView.Adapter<MyDiaryAdapter.DiaryViewHolder>() {
 
-    inner class DiaryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvDay: TextView = itemView.findViewById(R.id.tvDay)
-        val tvWeekday: TextView = itemView.findViewById(R.id.tvWeekday)
-        val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
-        val ivWeather: ImageView = itemView.findViewById(R.id.ivWeather)
-        val ivEmoition: ImageView = itemView.findViewById(R.id.ivEmotion)
-        val tvScore: TextView = itemView.findViewById(R.id.tvScore)
+    inner class DiaryViewHolder(private val binding: ItemDiaryListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: DiaryItem) {
+            binding.tvDay.text = item.day
+            binding.tvWeekday.text = item.weekday
+            binding.tvTitle.text = item.title
+            binding.ivWeather.setImageResource(item.weather)
+            binding.ivEmotion.setImageResource(item.emotion)
+            binding.tvScore.text = item.score
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_diary_list, parent, false)
-        return DiaryViewHolder(view)
+        val binding = ItemDiaryListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DiaryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
-        val item = items[position]
-        holder.tvDay.text = item.day
-        holder.tvWeekday.text = item.weekday
-        holder.tvTitle.text = item.title
-        holder.ivWeather.setImageResource(item.weather)
-        holder.ivEmoition.setImageResource(item.emotion)
-        holder.tvScore.text = item.score
-
+        holder.bind(items[position])
     }
 
     override fun getItemCount(): Int = items.size
 }
+
