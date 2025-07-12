@@ -2,6 +2,7 @@ package jin.contest.ta_android.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,8 +36,9 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this, HomeViewModel.Factory(reportRepository, diaryRepository))[HomeViewModel::class.java]
 
         homeViewModel.weeklyReports.observe(viewLifecycleOwner, Observer { reports ->
-            if (reports.isNotEmpty()) {
-                val firstReport = reports[0]
+            if (reports?.content?.isNotEmpty() == true) {
+                val firstReport = reports.content[0]  // 첫 번째 리포트 가져오기
+                Log.d("HomeFragment", "첫 번째 리포트: ${firstReport.title}, ${firstReport.content}")
                 binding.tvWeeklyReportTitle.text = firstReport.title
                 binding.tvWeeklyReportContent.text = firstReport.content
             } else {
