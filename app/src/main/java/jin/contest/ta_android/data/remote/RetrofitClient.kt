@@ -25,5 +25,8 @@ object RetrofitClient {
             .build()
             .create(ApiService::class.java)
     }
+    val logging = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
 
 } 

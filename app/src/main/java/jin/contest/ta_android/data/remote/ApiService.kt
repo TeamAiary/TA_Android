@@ -39,5 +39,5 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Response<PageResponse<DiaryResponse>>
-}
 
+}

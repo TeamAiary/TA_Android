@@ -1,28 +1,23 @@
 package jin.contest.ta_android.ui.emotion
 
+import jin.contest.ta_android.data.model.WritingRequest
+import jin.contest.ta_android.MainActivity
+import jin.contest.ta_android.databinding.FragmentEmotionBinding
+import jin.contest.ta_android.R
 import android.content.Intent
-import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
-import android.widget.ImageButton
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import jin.contest.ta_android.EmotionActivity
-import jin.contest.ta_android.data.model.WritingRequest
-import jin.contest.ta_android.MainActivity
-import jin.contest.ta_android.databinding.FragmentEmotionBinding
-import jin.contest.ta_android.ui.writing.WritingFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 
-import jin.contest.ta_android.R
-import jin.contest.ta_android.WritingActivity
-import jin.contest.ta_android.databinding.FragmentHomeBinding
 
+//오늘의 감정 점수를 입력할 수 있는 fragment.
 class EmotionFragment : Fragment() {
 
     private var _binding: FragmentEmotionBinding? = null

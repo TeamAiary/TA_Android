@@ -1,4 +1,4 @@
-package jin.contest.ta_android.ui.diary
+package jin.contest.ta_android.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
