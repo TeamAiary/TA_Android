@@ -40,6 +40,4 @@ interface ApiService {
         @Query("size") size: Int
     ): Response<PageResponse<DiaryResponse>>
 
-    @GET("/api/diary")
-    suspend fun getMyDiaryList(): Response<List<DiaryResponse>>
 }

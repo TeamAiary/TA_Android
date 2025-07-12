@@ -7,31 +7,50 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/topBar"
         android:background="#FFFFFF"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="내 일기"
-                android:layout_gravity="center"
-                android:padding="10sp"
-                android:layout_marginTop="15dp"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:padding="10sp"
+            android:text="내 일기"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <Button
+                android:id="@+id/buttonYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
-                android:text="연도"
+                android:backgroundTint="#D2B48C"
 
-                android:backgroundTint="#D2B48C">
-            </Button>
+                android:text="연도"></Button>
+
+            <Button
+                android:id="@+id/buttonMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:backgroundTint="#D2B48C"
+                android:text="월"></Button>
+        </LinearLayout>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

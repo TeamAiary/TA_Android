@@ -1,6 +1,7 @@
 package jin.contest.ta_android.ui.myDiary
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import jin.contest.ta_android.databinding.FragmentMyDiaryBinding
 import jin.contest.ta_android.R
 import androidx.recyclerview.widget.RecyclerView
+import jin.contest.ta_android.ui.home.DiaryViewModel
 
 class MyDiaryFragment : Fragment() {
 
@@ -29,35 +31,27 @@ class MyDiaryFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        adapter = MyDiaryAdapter(emptyList()) // 초기 리스트는 비워둠
+        adapter = MyDiaryAdapter(emptyList())
         binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.diaryRecyclerView.adapter = adapter
 
-        viewModel.MyDiaryList.observe(viewLifecycleOwner) { diaries ->
-            // DiaryResponse → DiaryItem 변환
+        viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
+            Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
             val items = diaries.map { diary ->
                 DiaryItem(
-                    day = diary.date.substring(8, 10),
-                    weekday = getWeekdayFromDate(diary.date),
+                    day = diary.createdAt.substring(8, 10),
+                    weekday = getWeekdayFromDate(diary.createdAt),
                     title = diary.title,
-                    weather = getWeatherIcon(diary.weather),
-                    emotion = getEmotionIcon(diary.emotion),
+                    preview = diary.preview,
+                    weather = getWeatherIcon(diary.weather.uppercase()),
+                    emotion = getEmotionIcon(diary.emotion.lowercase()),
                     score = "${diary.emotionPoint}점"
                 )
             }
-            adapter = MyDiaryAdapter(items) // 새 어댑터로 교체 (아니면 submitList 쓰면 더 좋음)
-            binding.diaryRecyclerView.adapter = adapter
+            adapter.updateItems(items)
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-            error?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
-        }
-
-        viewModel.myDiary()
+        viewModel.loadDiaries(2025, 7, 0, 12)
     }
 
     override fun onDestroyView() {
