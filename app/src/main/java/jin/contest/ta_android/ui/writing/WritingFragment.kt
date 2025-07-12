@@ -100,26 +100,23 @@ class WritingFragment : Fragment() {
         val buttonSave = view.findViewById<Button>(R.id.buttonSave)
 
         buttonSave.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("저장 확인")
-                .setMessage("이대로 작성을 완료하시겠습니까?")
-                .setPositiveButton("예") { dialog, _ ->
-                    title = binding.editTextTitle.text.toString()
-                    content = binding.editTextDiary.text.toString()
-
-                    val intent = Intent(requireContext(), EmotionActivity::class.java).apply {
-                        putExtra("title", binding.editTextTitle.text.toString())
-                        putExtra("content", binding.editTextDiary.text.toString())
-                        putExtra("resultWeather", resultWeather)
-                    }
-                    startActivity(intent)
-                    dialog.dismiss()
+            if(resultWeather==""){
+                Toast.makeText(requireContext(), "날씨를 선택해주세요!", Toast.LENGTH_SHORT).show()
+            }
+            else if(binding.editTextTitle.text.toString()==""){
+                Toast.makeText(requireContext(), "제목을 입력해주세요!", Toast.LENGTH_SHORT).show()
+            }
+            else if(binding.editTextDiary.text.toString()==""){
+                Toast.makeText(requireContext(), "내용을 입력해주세요!", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val intent = Intent(requireContext(), EmotionActivity::class.java).apply {
+                    putExtra("title", binding.editTextTitle.text.toString())
+                    putExtra("content", binding.editTextDiary.text.toString())
+                    putExtra("resultWeather", resultWeather)
                 }
-                .setNegativeButton("아니오") { dialog, _ ->
-                    dialog.dismiss()
-                }
-
-                .show()
+                startActivity(intent)
+            }
         }
     }
 
