@@ -88,7 +88,7 @@ class WritingFragment : Fragment() {
 
         iconRain.setOnClickListener {
             btnWeather.setImageResource(R.drawable.icon_rain)
-            resultWeather="RAINNY"
+            resultWeather="RAINY"
             hideIcons(iconSun, iconCloud, iconRain, iconSnow)
         }
         iconSnow.setOnClickListener {
