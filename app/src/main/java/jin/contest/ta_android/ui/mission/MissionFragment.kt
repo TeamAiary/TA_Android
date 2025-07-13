@@ -47,7 +47,6 @@ class MissionFragment : Fragment() {
             }
         })
 
-        // 미션 진행 상황 관찰
         missionViewModel.missionProgress.observe(viewLifecycleOwner, Observer { progress ->
             val missionCheckBoxes = arrayOf(
                 binding.cbMission1,
@@ -57,7 +56,19 @@ class MissionFragment : Fragment() {
                 binding.cbMission5,
                 binding.cbMission6
             )
-            
+
+            val completedCount = progress.count { it }
+            val totalCount = progress.size
+
+            binding.tvMissionProgress.text = "$completedCount/$totalCount"
+
+            val progressPercentage = if (totalCount > 0) {
+                (completedCount * 100) / totalCount
+            } else {
+                0
+            }
+            binding.progressMission.progress = progressPercentage
+
             progress.forEachIndexed { index, isCompleted ->
                 if (index < missionCheckBoxes.size) {
                     missionCheckBoxes[index].isChecked = isCompleted
