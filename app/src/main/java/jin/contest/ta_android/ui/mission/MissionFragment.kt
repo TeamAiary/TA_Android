@@ -56,7 +56,7 @@ class MissionFragment : Fragment() {
                 binding.cbMission5,
                 binding.cbMission6
             )
-
+            
             val completedCount = progress.count { it }
             val totalCount = progress.size
 
@@ -68,6 +68,37 @@ class MissionFragment : Fragment() {
                 0
             }
             binding.progressMission.progress = progressPercentage
+
+            val calendar = java.util.Calendar.getInstance()
+            val currentDayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
+            
+            val remainingText = when (currentDayOfWeek) {
+                java.util.Calendar.MONDAY -> "D-6"
+                java.util.Calendar.TUESDAY -> "D-5"
+                java.util.Calendar.WEDNESDAY -> "D-4"
+                java.util.Calendar.THURSDAY -> "D-3"
+                java.util.Calendar.FRIDAY -> "D-2"
+                java.util.Calendar.SATURDAY -> "D-1"
+                java.util.Calendar.SUNDAY -> {
+                    val now = java.util.Calendar.getInstance()
+                    val midnight = java.util.Calendar.getInstance().apply {
+                        set(java.util.Calendar.HOUR_OF_DAY, 0)
+                        set(java.util.Calendar.MINUTE, 0)
+                        set(java.util.Calendar.SECOND, 0)
+                        set(java.util.Calendar.MILLISECOND, 0)
+                        add(java.util.Calendar.DAY_OF_MONTH, 1)
+                    }
+                    
+                    val diffMillis = midnight.timeInMillis - now.timeInMillis
+                    val diffHours = diffMillis / (1000 * 60 * 60)
+                    val diffMinutes = (diffMillis % (1000 * 60 * 60)) / (1000 * 60)
+                    
+                    "${diffHours}H ${diffMinutes}M"
+                }
+                else -> "D-6"
+            }
+            
+            binding.tvMissionHours.text = remainingText
 
             progress.forEachIndexed { index, isCompleted ->
                 if (index < missionCheckBoxes.size) {
