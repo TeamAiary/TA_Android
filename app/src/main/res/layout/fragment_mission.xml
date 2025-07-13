@@ -135,7 +135,7 @@
                 android:layout_height="32dp"
                 android:checked="false"
                 android:enabled="false"
-                android:buttonTint="#222222" />
+                android:buttonTint="#888888" />
         </LinearLayout>
 
         <!-- 미션 2 -->
@@ -172,7 +172,7 @@
                 android:layout_height="32dp"
                 android:checked="false"
                 android:enabled="false"
-                android:buttonTint="#222222" />
+                android:buttonTint="#888888" />
         </LinearLayout>
 
         <!-- 미션 3 -->
@@ -209,7 +209,7 @@
                 android:layout_height="32dp"
                 android:checked="false"
                 android:enabled="false"
-                android:buttonTint="#222222" />
+                android:buttonTint="#888888" />
         </LinearLayout>
 
         <!-- 미션 4 -->
