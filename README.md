@@ -7,7 +7,7 @@
 
 |                      JinVibe                       |
 | :------------------------------------------------: |
-| <img width="240px" src="https://avatars.githubusercontent.com/u/114082026?v=4" /> |
+| <img width="240px" src="https://avatars.githubusercontent.com/u/127033666?s=400&u=c42e3e5c82c63bc2b0717c1ca8ef49bd75ee2ac8&v=4" /> |
 |     [@JinVibe](https://github.com/JinVibe)       |
 |          National - 🇰🇷 Republic Of Korea           |
 
@@ -64,19 +64,15 @@
 ![git_flow.png](image/git_flow.png)
 
 ## 기술 스택
-> Framework
+> IDEs/Editors
 >
-![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![Spring Data JPA](https://img.shields.io/badge/Spring%20Data%20JPA-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
-> DB
+![Android Studio](https://img.shields.io/badge/android%20studio-346ac1?style=for-the-badge&logo=android%20studio&logoColor=white)
+> Languages
 >
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-
-> Deploy & Automation
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
+> Operating System
 >
-![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 
 > Collaboration Tool
 >
