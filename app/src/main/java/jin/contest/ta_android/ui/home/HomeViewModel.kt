@@ -9,6 +9,7 @@ import jin.contest.ta_android.data.model.WeeklyReportResponse
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.data.repository.DiaryRepository
 import kotlinx.coroutines.launch
+import jin.contest.ta_android.data.model.PageResponse
 
 class HomeViewModel(
     private val reportRepository: ReportRepository,
@@ -20,8 +21,8 @@ class HomeViewModel(
     }
     val text: LiveData<String> = _text
 
-    private val _weeklyReports = MutableLiveData<List<WeeklyReportResponse>>()
-    val weeklyReports: LiveData<List<WeeklyReportResponse>> = _weeklyReports
+    private val _weeklyReports = MutableLiveData<PageResponse<WeeklyReportResponse>?>()
+    val weeklyReports: LiveData<PageResponse<WeeklyReportResponse>?> = _weeklyReports
 
     private val _weeklyDo = MutableLiveData<List<Boolean>>()
     val weeklyDo: LiveData<List<Boolean>> = _weeklyDo
@@ -29,7 +30,7 @@ class HomeViewModel(
     fun fetchWeeklyReports(page: Int = 0, size: Int = 10) {
         viewModelScope.launch {
             val result = reportRepository.getWeeklyReports(page, size)
-            _weeklyReports.value = result?.content ?: emptyList()
+            _weeklyReports.value = result
         }
     }
 

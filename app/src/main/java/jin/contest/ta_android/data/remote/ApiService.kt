@@ -10,6 +10,10 @@ import jin.contest.ta_android.data.model.PageResponse
 import jin.contest.ta_android.data.model.WeeklyReportResponse
 import jin.contest.ta_android.data.model.DiaryResponse
 import jin.contest.ta_android.data.model.WeeklyDoResponse
+import jin.contest.ta_android.data.model.MissionResponse
+import jin.contest.ta_android.data.model.MissionClearRequest
+import jin.contest.ta_android.data.model.MissionClearResponse
+import jin.contest.ta_android.data.model.MissionProgressResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -43,4 +47,15 @@ interface ApiService {
 
     @GET("/api/diary/weekly")
     suspend fun getWeeklyDo(): Response<WeeklyDoResponse>
+
+    @GET("/api/mission")
+    suspend fun getMissions(): Response<List<MissionResponse>>
+
+    @POST("/api/mission/clear")
+    suspend fun clearMission(
+        @Body request: MissionClearRequest
+    ): Response<MissionClearResponse>
+
+    @GET("/api/user/mission")
+    suspend fun getMissionProgress(): Response<MissionProgressResponse>
 }
