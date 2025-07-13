@@ -39,13 +39,40 @@ class MissionFragment : Fragment() {
                 binding.tvMission5,
                 binding.tvMission6
             )
-
+            
             missions.forEachIndexed { index, mission ->
                 if (index < missionTextViews.size) {
                     missionTextViews[index].text = mission.content
                 }
             }
         })
+
+        // 미션 완료 결과 관찰
+        missionViewModel.clearResult.observe(viewLifecycleOwner, Observer { result ->
+            result.onSuccess { response ->
+                android.widget.Toast.makeText(requireContext(), response.message, android.widget.Toast.LENGTH_SHORT).show()
+            }.onFailure { exception ->
+                android.widget.Toast.makeText(requireContext(), "미션 완료에 실패했습니다: ${exception.message}", android.widget.Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        val missionCheckBoxes = arrayOf(
+            binding.cbMission1,
+            binding.cbMission2,
+            binding.cbMission3,
+            binding.cbMission4,
+            binding.cbMission5,
+            binding.cbMission6
+        )
+
+        missionCheckBoxes.forEachIndexed { index, checkBox ->
+            checkBox.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    // 체크박스가 체크되면 해당 미션 완료 API 호출
+                    missionViewModel.clearMission(index + 1) // 미션 번호는 1~6
+                }
+            }
+        }
 
         missionViewModel.fetchMissions()
 
