@@ -10,6 +10,7 @@ import jin.contest.ta_android.data.model.PageResponse
 import jin.contest.ta_android.data.model.WeeklyReportResponse
 import jin.contest.ta_android.data.model.DiaryResponse
 import jin.contest.ta_android.data.model.WeeklyDoResponse
+import jin.contest.ta_android.data.model.MonthlyReportResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -32,6 +33,12 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Response<PageResponse<WeeklyReportResponse>>
+
+    @GET("/api/report/monthly")
+    suspend fun getMonthlyReports(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Response<PageResponse<MonthlyReportResponse>>
 
     @GET("/api/diary")
     suspend fun getAllDiaries(

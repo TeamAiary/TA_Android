@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <!-- 감정 점수 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/tvDepression"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="우울: 0"
+                android:textSize="14sp"
+                android:layout_marginRight="10dp"
+                android:textColor="#FF4444" />
+
+            <TextView
+                android:id="@+id/tvAnger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분노: 0"
+                android:textSize="14sp"
+                android:layout_marginRight="10dp"
+                android:textColor="#FF8800" />
+
+            <TextView
+                android:id="@+id/tvHappy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="행복: 0"
+                android:textSize="14sp"
+                android:layout_marginRight="10dp"
+                android:textColor="#44AA44" />
+
+            <TextView
+                android:id="@+id/tvRiskScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="위험 점수: 0"
+                android:textSize="14sp"
+                android:layout_marginRight="10dp"
+                android:textColor="#AA0000" />
+
+        </LinearLayout>
+
+        <!-- 내용 -->
+        <TextView
+            android:id="@+id/tvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            android:textSize="16sp"
+            android:layout_marginTop="12dp"
+            android:textColor="#333333" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
