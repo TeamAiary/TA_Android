@@ -4,34 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import jin.contest.ta_android.databinding.FragmentMissionBinding
 
 class MissionFragment : Fragment() {
 
     private var _binding: FragmentMissionBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        val missionViewModel =
-            ViewModelProvider(this).get(MissionViewModel::class.java)
-
+    ): View? {
         _binding = FragmentMissionBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val root = binding.root
 
-        val textView: TextView = binding.textMission
-        missionViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        // 예시: 타이틀 텍스트 접근
+        // binding.tvMissionTitle.text = "Weekly Quests"
+
         return root
     }
 

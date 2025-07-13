@@ -1,22 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F9F6F1"
     tools:context=".ui.mission.MissionFragment">
 
+    <!-- 상단 타이틀 -->
     <TextView
-        android:id="@+id/text_mission"
+        android:id="@+id/tv_mission_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:text="Weekly Quests"
         android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:background="#FFF8E1"
+        android:padding="16dp"
+        android:textColor="#222222" />
+
+    <!-- 주간 미션 진행도 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ECECEC"
+        android:layout_margin="16dp"
+        android:padding="16dp"
+        android:layout_gravity="center_horizontal"
+        android:clipToPadding="false"
+        android:elevation="2dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#ECECEC"
+        android:backgroundTintMode="src_in"
+        android:radius="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_mission_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주간 미션"
+                android:textColor="#222222"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_mission_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3/8"
+                android:textColor="#222222"
+                android:textSize="16sp"
+                android:layout_marginStart="12dp" />
+
+            <TextView
+                android:id="@+id/tv_mission_hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8 HOURS"
+                android:textColor="#222222"
+                android:textSize="14sp"
+                android:layout_marginStart="12dp"
+                android:drawableStart="@android:drawable/ic_lock_idle_alarm"
+                android:drawablePadding="4dp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_mission"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:progress="38"
+            android:max="100"
+            android:progressDrawable="@android:drawable/progress_horizontal"
+            android:backgroundTint="#FFF8E1" />
+    </LinearLayout>
+
+    <!-- 미션 리스트 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="#ECECEC"
+        android:padding="8dp"
+        android:layout_gravity="center_horizontal"
+        android:clipToPadding="false"
+        android:elevation="2dp"
+        android:backgroundTint="#ECECEC"
+        android:backgroundTintMode="src_in"
+        android:radius="16dp">
+
+        <!-- 미션 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#D9D9D9"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_directions"
+                android:contentDescription="산책 아이콘" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="30분 산책하기"
+                android:textColor="#222222"
+                android:textSize="18sp"
+                android:layout_marginStart="12dp" />
+
+            <CheckBox
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checked="true"
+                android:buttonTint="#222222" />
+        </LinearLayout>
+
+        <!-- 미션 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#D9D9D9"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_compass"
+                android:contentDescription="명상 아이콘" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="10분 명상하기"
+                android:textColor="#222222"
+                android:textSize="18sp"
+                android:layout_marginStart="12dp" />
+
+            <CheckBox
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checked="false"
+                android:buttonTint="#222222" />
+        </LinearLayout>
+
+        <!-- 미션 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#D9D9D9"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:contentDescription="운동 아이콘" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1시간 이상 운동하기"
+                android:textColor="#222222"
+                android:textSize="18sp"
+                android:layout_marginStart="12dp" />
+
+            <CheckBox
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checked="false"
+                android:buttonTint="#222222" />
+        </LinearLayout>
+
+        <!-- 미션 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#D9D9D9"
+            android:layout_marginBottom="4dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_agenda"
+                android:contentDescription="독서 아이콘" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="20분 이상 독서하기"
+                android:textColor="#222222"
+                android:textSize="18sp"
+                android:layout_marginStart="12dp" />
+
+            <CheckBox
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:checked="false"
+                android:buttonTint="#222222" />
+        </LinearLayout>
+
+        <!-- 빈 미션 영역 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:background="#ECECEC" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:background="#ECECEC" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:background="#ECECEC" />
+    </LinearLayout>
+
+    <!-- 하단 네비게이션 바 공간 확보 (실제 네비게이션은 Activity에서 관리) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#FFF8E1" />
+
+</LinearLayout>
