@@ -31,15 +31,18 @@ class MissionFragment : Fragment() {
         missionViewModel = ViewModelProvider(this, MissionViewModel.Factory(missionRepository))[MissionViewModel::class.java]
 
         missionViewModel.missions.observe(viewLifecycleOwner, Observer { missions ->
-            // API로 받은 미션 데이터를 각 미션 박스에 반영
+            val missionTextViews = arrayOf(
+                binding.tvMission1,
+                binding.tvMission2,
+                binding.tvMission3,
+                binding.tvMission4,
+                binding.tvMission5,
+                binding.tvMission6
+            )
+
             missions.forEachIndexed { index, mission ->
-                when (index) {
-                    0 -> binding.tvMission1.text = mission.content
-                    1 -> binding.tvMission2.text = mission.content
-                    2 -> binding.tvMission3.text = mission.content
-                    3 -> binding.tvMission4.text = mission.content
-                    4 -> binding.tvMission5.text = mission.content
-                    5 -> binding.tvMission6.text = mission.content
+                if (index < missionTextViews.size) {
+                    missionTextViews[index].text = mission.content
                 }
             }
         })
