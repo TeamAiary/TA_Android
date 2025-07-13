@@ -31,8 +31,17 @@ class MissionFragment : Fragment() {
         missionViewModel = ViewModelProvider(this, MissionViewModel.Factory(missionRepository))[MissionViewModel::class.java]
 
         missionViewModel.missions.observe(viewLifecycleOwner, Observer { missions ->
-            // TODO: 미션 리스트를 UI에 반영 (예: 각 미션 TextView/CheckBox에 내용 할당)
-            // 예시: binding.tvMissionTitle.text = missions.getOrNull(0)?.content ?: ""
+            // API로 받은 미션 데이터를 각 미션 박스에 반영
+            missions.forEachIndexed { index, mission ->
+                when (index) {
+                    0 -> binding.tvMission1.text = mission.content
+                    1 -> binding.tvMission2.text = mission.content
+                    2 -> binding.tvMission3.text = mission.content
+                    3 -> binding.tvMission4.text = mission.content
+                    4 -> binding.tvMission5.text = mission.content
+                    5 -> binding.tvMission6.text = mission.content
+                }
+            }
         })
 
         missionViewModel.fetchMissions()
