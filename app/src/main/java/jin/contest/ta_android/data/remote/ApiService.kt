@@ -13,6 +13,7 @@ import jin.contest.ta_android.data.model.WeeklyDoResponse
 import jin.contest.ta_android.data.model.MissionResponse
 import jin.contest.ta_android.data.model.MissionClearRequest
 import jin.contest.ta_android.data.model.MissionClearResponse
+import jin.contest.ta_android.data.model.MissionProgressResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -54,4 +55,7 @@ interface ApiService {
     suspend fun clearMission(
         @Body request: MissionClearRequest
     ): Response<MissionClearResponse>
+
+    @GET("/api/user/mission")
+    suspend fun getMissionProgress(): Response<MissionProgressResponse>
 }

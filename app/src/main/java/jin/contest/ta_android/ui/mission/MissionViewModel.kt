@@ -17,10 +17,20 @@ class MissionViewModel(private val missionRepository: MissionRepository) : ViewM
     private val _clearResult = MutableLiveData<Result<MissionClearResponse>>()
     val clearResult: LiveData<Result<MissionClearResponse>> = _clearResult
 
+    private val _missionProgress = MutableLiveData<List<Boolean>>()
+    val missionProgress: LiveData<List<Boolean>> = _missionProgress
+
     fun fetchMissions() {
         viewModelScope.launch {
             val result = missionRepository.getMissions()
             _missions.value = result ?: emptyList()
+        }
+    }
+
+    fun fetchMissionProgress() {
+        viewModelScope.launch {
+            val result = missionRepository.getMissionProgress()
+            _missionProgress.value = result?.progress ?: List(6) { false }
         }
     }
 
@@ -30,6 +40,8 @@ class MissionViewModel(private val missionRepository: MissionRepository) : ViewM
                 val result = missionRepository.clearMission(missionNumber)
                 if (result != null) {
                     _clearResult.value = Result.success(result)
+                    // 미션 완료 후 진행 상황 다시 조회
+                    fetchMissionProgress()
                 } else {
                     _clearResult.value = Result.failure(Exception("미션 완료에 실패했습니다."))
                 }

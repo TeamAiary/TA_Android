@@ -47,7 +47,24 @@ class MissionFragment : Fragment() {
             }
         })
 
-        // 미션 완료 결과 관찰
+        // 미션 진행 상황 관찰
+        missionViewModel.missionProgress.observe(viewLifecycleOwner, Observer { progress ->
+            val missionCheckBoxes = arrayOf(
+                binding.cbMission1,
+                binding.cbMission2,
+                binding.cbMission3,
+                binding.cbMission4,
+                binding.cbMission5,
+                binding.cbMission6
+            )
+            
+            progress.forEachIndexed { index, isCompleted ->
+                if (index < missionCheckBoxes.size) {
+                    missionCheckBoxes[index].isChecked = isCompleted
+                }
+            }
+        })
+
         missionViewModel.clearResult.observe(viewLifecycleOwner, Observer { result ->
             result.onSuccess { response ->
                 android.widget.Toast.makeText(requireContext(), response.message, android.widget.Toast.LENGTH_SHORT).show()
@@ -68,13 +85,13 @@ class MissionFragment : Fragment() {
         missionCheckBoxes.forEachIndexed { index, checkBox ->
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    // 체크박스가 체크되면 해당 미션 완료 API 호출
-                    missionViewModel.clearMission(index + 1) // 미션 번호는 1~6
+                    missionViewModel.clearMission(index + 1)
                 }
             }
         }
 
         missionViewModel.fetchMissions()
+        missionViewModel.fetchMissionProgress()
 
         return root
     }
