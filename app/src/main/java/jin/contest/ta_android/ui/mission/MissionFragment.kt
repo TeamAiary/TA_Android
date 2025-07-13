@@ -124,10 +124,13 @@ class MissionFragment : Fragment() {
             binding.cbMission6
         )
 
+        // 미션 4, 5, 6만 클릭 리스너 설정 (미션 1, 2, 3은 고정)
         missionCheckBoxes.forEachIndexed { index, checkBox ->
-            checkBox.setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    missionViewModel.clearMission(index + 1)
+            if (index >= 3) { // 미션 4, 5, 6만 (인덱스 3, 4, 5)
+                checkBox.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        missionViewModel.clearMission(index + 1)
+                    }
                 }
             }
         }

@@ -134,6 +134,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:checked="false"
+                android:enabled="false"
                 android:buttonTint="#222222" />
         </LinearLayout>
 
@@ -170,6 +171,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:checked="false"
+                android:enabled="false"
                 android:buttonTint="#222222" />
         </LinearLayout>
 
@@ -206,6 +208,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:checked="false"
+                android:enabled="false"
                 android:buttonTint="#222222" />
         </LinearLayout>
 
