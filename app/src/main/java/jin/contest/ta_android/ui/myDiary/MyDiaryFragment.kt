@@ -110,6 +110,9 @@ class MyDiaryFragment : Fragment() {
 
     }
     private fun floatNode(year : Int , month : Int){
+        binding.diaryRecyclerView.adapter = null
+        binding.diaryRecyclerView.layoutManager = null
+
         adapter = MyDiaryAdapter(emptyList())
         binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.diaryRecyclerView.adapter = adapter
