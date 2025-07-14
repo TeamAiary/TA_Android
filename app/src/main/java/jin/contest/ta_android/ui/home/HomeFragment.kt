@@ -13,6 +13,7 @@ import jin.contest.ta_android.WritingActivity
 import jin.contest.ta_android.data.remote.RetrofitClient
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.data.repository.DiaryRepository
+import jin.contest.ta_android.data.repository.TodayRepository
 import jin.contest.ta_android.databinding.FragmentHomeBinding
 import androidx.navigation.fragment.findNavController
 import jin.contest.ta_android.R
@@ -35,7 +36,8 @@ class HomeFragment : Fragment() {
         val apiService = RetrofitClient.apiService
         val reportRepository = ReportRepository(apiService)
         val diaryRepository = DiaryRepository(apiService)
-        homeViewModel = ViewModelProvider(this, HomeViewModel.Factory(reportRepository, diaryRepository))[HomeViewModel::class.java]
+        val todayRepository = TodayRepository()
+        homeViewModel = ViewModelProvider(this, HomeViewModel.Factory(reportRepository, diaryRepository, todayRepository))[HomeViewModel::class.java]
 
         homeViewModel.weeklyReports.observe(viewLifecycleOwner, Observer { reports ->
             if (reports?.content?.isNotEmpty() == true) {
@@ -68,20 +70,44 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), WritingActivity::class.java)
             startActivity(intent)
         }
-        val title = arguments?.getString("content")
-        val content = arguments?.getString("content")
-        Log.d("test","${content}")
 
-        if(content != null){
-            binding.tvDiaryTitle.text=title
-            binding.tvDiaryContent.text=content
-        }
-        else{
-            binding.tvDiaryTitle.text="오늘 작성한 일기가 없습니다"
-            binding.tvDiaryContent.text=""
+        homeViewModel.todayDiary.observe(viewLifecycleOwner, Observer { diary ->
+            if (diary?.content?.isNotEmpty() == true) {
+                binding.tvDiaryTitle.text = diary.title
+                binding.tvDiaryDate.text = diary.createdAt.substring(0,10)
+                binding.tvDiaryWeather.text = "(날씨 : ${diary.weather})"
+                binding.tvDiaryEmotion.text = "[${getEmotion(diary.emotion)}점수 : ${diary.emotionPoint}]"
+                binding.tvDiaryContent.text = diary.content
+                Log.d("test", "${diary.content}")
+            }
+            else{
+                binding.tvDiaryTitle.text = "오늘의 일기가 없습니다"
+            }
+        })
+        homeViewModel.fetchTodayDiary()
+
+        // 주변 상담소 카드 클릭 시 CounselFragment로 이동
+        binding.cardCounselLink.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_counsel)
         }
 
         return root
+    }
+    private fun getEmotion(emotion: String): String {
+        return when (emotion) {
+            "happy" -> "행복"
+            "depress" -> "우울"
+            else -> "분노"
+        }
+    }
+
+    private fun getWeather(weather: String): String {
+        return when (weather) {
+            "SUNNY" -> "맑음"
+            "CLOUDY" -> "흐림"
+            "RAINY" -> "비"
+            else -> "눈"
+        }
     }
 
     override fun onDestroyView() {

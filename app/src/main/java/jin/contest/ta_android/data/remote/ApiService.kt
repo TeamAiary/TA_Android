@@ -17,6 +17,7 @@ import jin.contest.ta_android.data.model.MissionClearResponse
 import jin.contest.ta_android.data.model.MissionProgressResponse
 import jin.contest.ta_android.data.model.DiaryDetailResponse
 import jin.contest.ta_android.data.model.CounselListResponse
+import jin.contest.ta_android.data.model.TodayDiaryResponse
 
 import retrofit2.Response
 import retrofit2.http.Body
@@ -82,4 +83,7 @@ interface ApiService {
         @Query("city") city: String,
         @Query("district") district: String? = null
     ): Response<CounselListResponse>
+
+    @GET("/api/diary/today")
+    suspend fun getTodayDiary() : Response<TodayDiaryResponse>
 }
