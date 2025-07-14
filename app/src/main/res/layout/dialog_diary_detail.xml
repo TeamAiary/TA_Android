@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:text="제목"
-                android:textSize="18sp"
+                android:textSize="21sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -38,7 +38,7 @@
                     android:layout_marginRight="10dp"
                     android:text="날짜"
                     android:textColor="#888888"
-                    android:textSize="15sp" />
+                    android:textSize="17sp" />
 
                 <ImageView
                     android:id="@+id/detailWeather"
@@ -86,7 +86,7 @@
         android:id="@+id/detailContent"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:textSize="15dp"
+        android:textSize="17dp"
         android:layout_marginTop="8dp"
         android:text="내용" />
 
