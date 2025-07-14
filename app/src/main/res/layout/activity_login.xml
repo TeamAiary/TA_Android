@@ -2,8 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,28 +11,18 @@
         android:padding="24dp"
         android:gravity="center">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="32dp"
-            app:cardCornerRadius="50dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="#FFFFFF">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:src="@drawable/momo"
-                android:textSize="40sp" />
-
-        </androidx.cardview.widget.CardView>
+        <!-- 빈 공간 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="반갑습니다"
-            android:textSize="28sp"
+            android:text="너와 함께 Aiary"
+            android:textSize="38sp"
             android:textStyle="bold"
             android:textColor="#5D4E37"
             android:layout_marginBottom="8dp" />
@@ -41,10 +30,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그인해주세요."
-            android:textSize="16sp"
+            android:text="당신의 이야기를 들려주세요."
+            android:textSize="22sp"
             android:textColor="#8B7355"
             android:layout_marginBottom="32dp" />
+
+        <!-- 빈 공간 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -52,7 +48,7 @@
             android:layout_marginHorizontal="8dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="12dp"
-            app:cardBackgroundColor="#FFFFFF">
+            app:cardBackgroundColor="@color/note_beige">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,18 +98,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/tv_forgot_password"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:text="비밀번호를 잊어버리셨나요?"
-                    android:textColor="#8B7355"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="16dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:background="?android:attr/selectableItemBackground" />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_sign_in"
@@ -181,7 +166,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="계정이 없으신가요? "
+                android:text="저희와 함께 하실래요? "
                 android:textColor="#8B7355"
                 android:textSize="14sp" />
 
