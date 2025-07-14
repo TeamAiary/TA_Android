@@ -27,6 +27,19 @@
         android:background="#E0E0E0"
         android:layout_margin="16dp" />
 
+    <TextView
+        android:id="@+id/tv_counsel_notify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="상담소를 선택하면 정보가 표시됩니다."
+        android:textColor="#333333"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:background="#FFFDE7"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -44,8 +57,8 @@
             android:textStyle="bold"
             android:layout_marginBottom="12dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_counsel_list"
+        <TextView
+            android:id="@+id/tv_counsel_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#F5F5F5" />

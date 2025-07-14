@@ -58,6 +58,14 @@ class CounselFragment : Fragment() {
         mapFragment.getMapAsync { googleMap ->
             googleMap.uiSettings.isZoomControlsEnabled = true
 
+            googleMap.setOnMarkerClickListener { marker ->
+                val name = marker.title
+                val address = marker.tag as? String ?: ""
+                Log.d("CounselFragment", "마커 클릭: $name, $address")
+                binding.tvCounselDetail.text = "이름: $name\n주소: $address"
+                false
+            }
+
             if (ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
                 googleMap.isMyLocationEnabled = true
 
@@ -70,10 +78,8 @@ class CounselFragment : Fragment() {
                 }
             }
 
-            // cityName이 null이면 상담소 리스트/마커 추가 로직 실행 안 함
             if (cityName == null) return@getMapAsync
 
-            // 상담소 리스트 받아와서 지도에 마커 추가
             lifecycleScope.launch {
                 try {
                     val city = cityName!!
@@ -93,7 +99,9 @@ class CounselFragment : Fragment() {
                                 val markerOptions = MarkerOptions()
                                     .position(LatLng(lat, lng))
                                     .title(counsel.기관명)
-                                googleMap.addMarker(markerOptions)
+                                val marker = googleMap.addMarker(markerOptions)
+                                marker?.tag = counsel.주소
+                                Log.d("CounselFragment", "마커 추가: ${counsel.기관명}, ${counsel.주소}")
                             }
                         }
                     }
@@ -122,9 +130,8 @@ class CounselFragment : Fragment() {
                 if (!addresses.isNullOrEmpty()) {
                     val adminArea = addresses[0].adminArea ?: "알 수 없음"
                     val city = adminArea.trim()
-                    cityName = city // 도시명 저장
+                    cityName = city
                     binding.tvCounselTitle.text = "주변 상담소 ($city)"
-                    // cityName이 세팅된 후에만 상담소 리스트/마커 추가 로직 실행
                     addCounselMarkers(city)
                 }
             } else {
@@ -133,7 +140,6 @@ class CounselFragment : Fragment() {
         }
     }
 
-    // cityName이 세팅된 후에만 실행되는 함수
     private fun addCounselMarkers(city: String) {
         val mapFragment = childFragmentManager.findFragmentById(jin.contest.ta_android.R.id.map_container) as? com.google.android.gms.maps.SupportMapFragment
             ?: return
@@ -156,7 +162,8 @@ class CounselFragment : Fragment() {
                                 val markerOptions = MarkerOptions()
                                     .position(LatLng(lat, lng))
                                     .title(counsel.기관명)
-                                googleMap.addMarker(markerOptions)
+                                val marker = googleMap.addMarker(markerOptions)
+                                marker?.tag = counsel.주소
                             }
                         }
                     }
