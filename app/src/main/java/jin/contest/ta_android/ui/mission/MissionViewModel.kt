@@ -10,11 +10,38 @@ import jin.contest.ta_android.data.repository.MissionRepository
 import kotlinx.coroutines.launch
 import jin.contest.ta_android.data.model.MissionClearResponse
 
+// SingleLiveEvent 구현 추가
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import java.util.concurrent.atomic.AtomicBoolean
+
+class SingleLiveEvent<T> : MutableLiveData<T>() {
+    private val pending = AtomicBoolean(false)
+
+    override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
+        super.observe(owner, Observer { t ->
+            if (pending.compareAndSet(true, false)) {
+                observer.onChanged(t)
+            }
+        })
+    }
+
+    override fun setValue(t: T?) {
+        pending.set(true)
+        super.setValue(t)
+    }
+
+    // Optional: call this for background thread
+    fun call() {
+        value = null
+    }
+}
+
 class MissionViewModel(private val missionRepository: MissionRepository) : ViewModel() {
     private val _missions = MutableLiveData<List<MissionResponse>>()
     val missions: LiveData<List<MissionResponse>> = _missions
 
-    private val _clearResult = MutableLiveData<Result<MissionClearResponse>>()
+    private val _clearResult = SingleLiveEvent<Result<MissionClearResponse>>()
     val clearResult: LiveData<Result<MissionClearResponse>> = _clearResult
 
     private val _missionProgress = MutableLiveData<List<Boolean>>()
@@ -34,14 +61,13 @@ class MissionViewModel(private val missionRepository: MissionRepository) : ViewM
         }
     }
 
-    fun clearMission(missionNumber: Int) {
+    fun clearMission(index: Int) {
         viewModelScope.launch {
             try {
-                val result = missionRepository.clearMission(missionNumber)
-                if (result != null) {
-                    _clearResult.value = Result.success(result)
-                    // 미션 완료 후 진행 상황 다시 조회
-                    fetchMissionProgress()
+                val response = missionRepository.clearMission(index)
+                if (response != null) {
+                    _clearResult.value = Result.success(response)
+                    fetchMissionProgress() // ★ 상태 즉시 갱신
                 } else {
                     _clearResult.value = Result.failure(Exception("미션 완료에 실패했습니다."))
                 }
