@@ -1,0 +1,21 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 배경 -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <size android:height="2dp"/> <!-- 바 두께 설정 -->
+            <corners android:radius="8dp"/>
+            <solid android:color="#FFFFDE"/>
+        </shape>
+    </item>
+
+    <!-- 진행된 부분 -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape android:shape="rectangle">
+                <size android:height="2dp"/> <!-- 바 두께 동일하게 맞춤 -->
+                <corners android:radius="8dp"/>
+                <solid android:color="#FCF69C"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>
