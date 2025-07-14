@@ -30,6 +30,26 @@ class MissionFragment : Fragment() {
         val missionRepository = MissionRepository(apiService)
         missionViewModel = ViewModelProvider(this, MissionViewModel.Factory(missionRepository))[MissionViewModel::class.java]
 
+        val missionCheckBoxes = arrayOf(
+            binding.cbMission1,
+            binding.cbMission2,
+            binding.cbMission3,
+            binding.cbMission4,
+            binding.cbMission5,
+            binding.cbMission6
+        )
+
+        // 체크박스 리스너는 onCreateView에서 한 번만 등록
+        missionCheckBoxes.forEachIndexed { index, checkBox ->
+            if (index >= 3) { // 미션 4, 5, 6만 (인덱스 3, 4, 5)
+                checkBox.setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        missionViewModel.clearMission(index + 1)
+                    }
+                }
+            }
+        }
+
         missionViewModel.missions.observe(viewLifecycleOwner, Observer { missions ->
             val missionTextViews = arrayOf(
                 binding.tvMission1,
@@ -39,7 +59,6 @@ class MissionFragment : Fragment() {
                 binding.tvMission5,
                 binding.tvMission6
             )
-            
             missions.forEachIndexed { index, mission ->
                 if (index < missionTextViews.size) {
                     missionTextViews[index].text = mission.content
@@ -47,21 +66,23 @@ class MissionFragment : Fragment() {
             }
         })
 
-        missionViewModel.missionProgress.observe(viewLifecycleOwner, Observer { progress ->
-            val missionCheckBoxes = arrayOf(
-                binding.cbMission1,
-                binding.cbMission2,
-                binding.cbMission3,
-                binding.cbMission4,
-                binding.cbMission5,
-                binding.cbMission6
-            )
-            
+        missionViewModel.missionProgress.observe(viewLifecycleOwner) { progress ->
+            progress.forEachIndexed { index, isCompleted ->
+                val checkBox = missionCheckBoxes[index]
+                checkBox.setOnCheckedChangeListener(null)
+                checkBox.isChecked = isCompleted
+                // 미션 4,5,6만 리스너 재등록
+                if (index >= 3) {
+                    checkBox.setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            missionViewModel.clearMission(index + 1)
+                        }
+                    }
+                }
+            }
             val completedCount = progress.count { it }
             val totalCount = progress.size
-
             binding.tvMissionProgress.text = "$completedCount/$totalCount"
-
             val progressPercentage = if (totalCount > 0) {
                 (completedCount * 100) / totalCount
             } else {
@@ -71,7 +92,6 @@ class MissionFragment : Fragment() {
 
             val calendar = java.util.Calendar.getInstance()
             val currentDayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
-            
             val remainingText = when (currentDayOfWeek) {
                 java.util.Calendar.MONDAY -> "D-6"
                 java.util.Calendar.TUESDAY -> "D-5"
@@ -88,24 +108,15 @@ class MissionFragment : Fragment() {
                         set(java.util.Calendar.MILLISECOND, 0)
                         add(java.util.Calendar.DAY_OF_MONTH, 1)
                     }
-                    
                     val diffMillis = midnight.timeInMillis - now.timeInMillis
                     val diffHours = diffMillis / (1000 * 60 * 60)
                     val diffMinutes = (diffMillis % (1000 * 60 * 60)) / (1000 * 60)
-                    
                     "${diffHours}H ${diffMinutes}M"
                 }
                 else -> "D-6"
             }
-            
             binding.tvMissionHours.text = remainingText
-
-            progress.forEachIndexed { index, isCompleted ->
-                if (index < missionCheckBoxes.size) {
-                    missionCheckBoxes[index].isChecked = isCompleted
-                }
-            }
-        })
+        }
 
         missionViewModel.clearResult.observe(viewLifecycleOwner, Observer { result ->
             result.onSuccess { response ->
@@ -114,26 +125,6 @@ class MissionFragment : Fragment() {
                 android.widget.Toast.makeText(requireContext(), "미션 완료에 실패했습니다: ${exception.message}", android.widget.Toast.LENGTH_SHORT).show()
             }
         })
-
-        val missionCheckBoxes = arrayOf(
-            binding.cbMission1,
-            binding.cbMission2,
-            binding.cbMission3,
-            binding.cbMission4,
-            binding.cbMission5,
-            binding.cbMission6
-        )
-
-        // 미션 4, 5, 6만 클릭 리스너 설정 (미션 1, 2, 3은 고정)
-        missionCheckBoxes.forEachIndexed { index, checkBox ->
-            if (index >= 3) { // 미션 4, 5, 6만 (인덱스 3, 4, 5)
-                checkBox.setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-                        missionViewModel.clearMission(index + 1)
-                    }
-                }
-            }
-        }
 
         missionViewModel.fetchMissions()
         missionViewModel.fetchMissionProgress()
