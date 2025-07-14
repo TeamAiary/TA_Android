@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F9F6F1"
+    android:background="@color/note_beige"
     tools:context=".ui.counsel.CounselFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:background="#FFF8E1"
+        android:background="@color/note_beige"
         android:padding="16dp"
         android:textColor="#222222" />
 
@@ -35,7 +35,7 @@
         android:textColor="#333333"
         android:textSize="16sp"
         android:padding="8dp"
-        android:background="#FFFDE7"
+        android:background="@color/note_beige"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"/>
