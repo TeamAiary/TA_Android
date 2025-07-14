@@ -21,16 +21,8 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupRoleSpinner()
         setupSignUpButton()
         observeViewModel()
-    }
-
-    private fun setupRoleSpinner() {
-        val roles = resources.getStringArray(jin.contest.ta_android.R.array.role_array)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, roles)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerRole.adapter = adapter
     }
 
     private fun setupSignUpButton() {
@@ -45,7 +37,6 @@ class SignUpActivity : AppCompatActivity() {
                 binding.rbFemale.id -> "FEMALE"
                 else -> ""
             }
-            val role = binding.spinnerRole.selectedItem.toString()
 
             if (email.isBlank() || password.isBlank() || userName.isBlank()) {
                 Toast.makeText(this, "이메일, 비밀번호, 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
@@ -58,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
                 userName = userName,
                 age = age,
                 gender = gender,
-                role = role,
+                role = "Patient", // 기본값으로 "patient" 설정
                 phoneNumber = phoneNumber
             )
             viewModel.signUp(request)
