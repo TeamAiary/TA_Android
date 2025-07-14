@@ -10,9 +10,6 @@
         <item name="android:fontFamily">@font/nanum_garam</item>
     </style>
 
-    <style name="customEditTextFontStyle" parent="@android:style/Widget.DeviceDefault.EditText">
-        <item name="android:fontFamily">@font/nanum_garam</item>
-    </style>
 
     <style name="customRadioButtonFontStyle" parent="@android:style/Widget.DeviceDefault.CompoundButton.RadioButton">
         <item name="android:fontFamily">@font/nanum_garam</item>

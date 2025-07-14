@@ -62,13 +62,6 @@
                     android:padding="30dp"
                     >
 
-                    <TextView
-                        android:id="@+id/tv_weekly_report_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="리포트 제목"
-                        android:textColor="#666666"
-                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/tv_weekly_report_content"
@@ -77,7 +70,7 @@
                         android:layout_marginTop="8dp"
                         android:text="리포트 내용"
                         android:textColor="#222222"
-                        android:textSize="17sp" />
+                        android:textSize="22sp" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -180,7 +173,7 @@
                 android:text="주변 상담소"
                 android:textStyle="bold"
                 android:textColor="#666666"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="24dp" />
 
