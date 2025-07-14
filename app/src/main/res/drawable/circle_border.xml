@@ -3,5 +3,5 @@
     <solid android:color="@android:color/transparent" />
     <stroke
         android:width="5dp"
-        android:color="#FFFFFF" /> <!-- 원하는 테두리 색상 -->
+        android:color="#000000" /> <!-- 원하는 테두리 색상 -->
 </shape>
