@@ -157,7 +157,7 @@
                 android:id="@+id/tv_counsel_link_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="상담 링크"
+                android:text="주변 상담소"
                 android:textColor="#666666"
                 android:textSize="16sp"
                 android:layout_marginTop="16dp"
@@ -177,7 +177,7 @@
                     android:id="@+id/tv_counsel_link"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="상담 링크를 클릭하세요"
+                    android:text="주변 상담소 찾기"
                     android:textColor="#222222"
                     android:textSize="16sp"
                     android:padding="16dp" />

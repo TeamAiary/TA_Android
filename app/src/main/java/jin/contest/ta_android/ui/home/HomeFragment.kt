@@ -14,6 +14,8 @@ import jin.contest.ta_android.data.remote.RetrofitClient
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.data.repository.DiaryRepository
 import jin.contest.ta_android.databinding.FragmentHomeBinding
+import androidx.navigation.fragment.findNavController
+import jin.contest.ta_android.R
 
 class HomeFragment : Fragment() {
 
@@ -67,6 +69,11 @@ class HomeFragment : Fragment() {
         binding.floatingToday.btnWriteDiary.setOnClickListener {
             val intent = Intent(requireActivity(), WritingActivity::class.java)
             startActivity(intent)
+        }
+
+        // 주변 상담소 카드 클릭 시 CounselFragment로 이동
+        binding.cardCounselLink.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_counsel)
         }
 
         return root
