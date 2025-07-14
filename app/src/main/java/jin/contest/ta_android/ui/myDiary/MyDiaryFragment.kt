@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -14,6 +15,8 @@ import jin.contest.ta_android.databinding.FragmentMyDiaryBinding
 import jin.contest.ta_android.R
 import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
+import android.graphics.Color
+import android.graphics.Paint
 import androidx.recyclerview.widget.RecyclerView
 import jin.contest.ta_android.data.model.DiaryResponse
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -141,12 +144,14 @@ class MyDiaryFragment : Fragment() {
             else -> R.drawable.icon_snow
         }
     }
+
     private fun selectYear(){
         binding.buttonYear.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.year_month_picker, null)
 
             val yearPicker = dialogView.findViewById<NumberPicker>(R.id.yearPicker)
             val monthPicker = dialogView.findViewById<NumberPicker>(R.id.monthPicker)
+
 
             val now = Calendar.getInstance()
             val currentYear = now.get(Calendar.YEAR)

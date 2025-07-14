@@ -86,18 +86,18 @@ class ReportFragment : Fragment() {
     )
     private fun updateButtonStyles() {
         val selectedColor = ContextCompat.getColor(requireContext(), R.color.white)
-        val unselectedColor = ContextCompat.getColor(requireContext(), R.color.dark_beige)
+        val unselectedColor = ContextCompat.getColor(requireContext(), R.color.light_green)
         val context = requireContext()
 
         if (isWeeklyMode==true) {
             binding.buttonWeek.backgroundTintList = ColorStateList.valueOf(selectedColor)
-            binding.buttonWeek.setTextColor(Color.parseColor("#D2B48C"))
+            binding.buttonWeek.setTextColor(Color.parseColor("#B5C18E"))
 
             binding.buttonMonth.backgroundTintList = ColorStateList.valueOf(unselectedColor)
             binding.buttonMonth.setTextColor(Color.parseColor("#FFFFFF"))
         } else {
             binding.buttonMonth.backgroundTintList = ColorStateList.valueOf(selectedColor)
-            binding.buttonMonth.setTextColor(Color.parseColor("#D2B48C"))
+            binding.buttonMonth.setTextColor(Color.parseColor("#B5C18E"))
 
             binding.buttonWeek.backgroundTintList = ColorStateList.valueOf(unselectedColor)
             binding.buttonWeek.setTextColor(Color.parseColor("#FFFFFF"))

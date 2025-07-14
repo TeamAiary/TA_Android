@@ -41,11 +41,9 @@ class HomeFragment : Fragment() {
             if (reports?.content?.isNotEmpty() == true) {
                 val firstReport = reports.content[0]  // 첫 번째 리포트 가져오기
                 Log.d("HomeFragment", "첫 번째 리포트: ${firstReport.title}, ${firstReport.content}")
-                binding.tvWeeklyReportTitle.text = firstReport.title
                 binding.tvWeeklyReportContent.text = firstReport.content
             } else {
-                binding.tvWeeklyReportTitle.text = "리포트가 없습니다."
-                binding.tvWeeklyReportContent.text = ""
+                binding.tvWeeklyReportContent.text = "리포트가 없습니다."
             }
         })
 

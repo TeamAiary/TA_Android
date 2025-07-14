@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/note_beige"
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="4dp">
@@ -28,7 +29,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="12"
-                android:textSize="30sp"
+                android:textSize="35sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="Mon"
-                android:textSize="17sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,22 +51,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
                 android:paddingStart="12dp">
 
                 <TextView
                     android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="15dp"
                     android:text="인공지능 다이어리"
-                    android:textSize="16sp"
+                    android:textSize="21sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/ivWeather"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
                     android:contentDescription="Weather"
                     android:src="@drawable/icon_sun" />
             </LinearLayout>
@@ -75,10 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="15dp"
+                android:textSize="19dp"
                 android:layout_marginStart="5dp"
                 android:paddingStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="4dp"
                 android:text="Preview" />
         </LinearLayout>
 
@@ -91,8 +94,8 @@
 
             <ImageView
                 android:id="@+id/ivEmotion"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/icon_happy"
                 android:layout_gravity="center"
                 android:contentDescription="Emotion" />
