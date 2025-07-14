@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +7,6 @@
     android:background="#F9F6F1"
     tools:context=".ui.counsel.CounselFragment">
 
-    <!-- 상단 타이틀 -->
     <TextView
         android:id="@+id/tv_counsel_title"
         android:layout_width="match_parent"
@@ -21,7 +19,6 @@
         android:padding="16dp"
         android:textColor="#222222" />
 
-    <!-- 지도 영역 (구글맵이 들어갈 자리) -->
     <FrameLayout
         android:id="@+id/map_container"
         android:layout_width="match_parent"
@@ -30,7 +27,6 @@
         android:background="#E0E0E0"
         android:layout_margin="16dp" />
 
-    <!-- 상담소 목록 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
