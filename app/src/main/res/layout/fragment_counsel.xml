@@ -28,17 +28,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="#E0E0E0"
-        android:layout_margin="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="구글맵이 여기에 표시됩니다"
-            android:textColor="#666666"
-            android:textSize="16sp" />
-
-    </FrameLayout>
+        android:layout_margin="16dp" />
 
     <!-- 상담소 목록 -->
     <LinearLayout
