@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import jin.contest.ta_android.databinding.FragmentCounselBinding
+import jin.contest.ta_android.R
 
 class CounselFragment : Fragment() {
 

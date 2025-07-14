@@ -35,4 +35,14 @@
         android:name="jin.contest.ta_android.ui.mypage.MyPageFragment"
         android:label="@string/title_my_page"
         tools:layout="@layout/fragment_my_page" />
+
+    <fragment
+        android:id="@+id/navigation_counsel"
+        android:name="jin.contest.ta_android.ui.counsel.CounselFragment"
+        android:label="주변 상담소"
+        tools:layout="@layout/fragment_counsel" />
+
+    <action
+        android:id="@+id/action_home_to_counsel"
+        app:destination="@id/navigation_counsel" />
 </navigation>
