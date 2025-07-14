@@ -26,6 +26,16 @@ class MyDiaryViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
 
+    private val _deleteSuccess = MutableLiveData<Event<Boolean>>()
+    val deleteSuccess: LiveData<Event<Boolean>> = _deleteSuccess
+
+    fun deleteDiary(id: Long) {
+        viewModelScope.launch {
+            val result = detailRepository.deleteDiary(id)
+            _deleteSuccess.value = Event(result)
+        }
+    }
+
     fun loadDiary(id: Long) {
         viewModelScope.launch {
             val diary = detailRepository.getDiary(id)

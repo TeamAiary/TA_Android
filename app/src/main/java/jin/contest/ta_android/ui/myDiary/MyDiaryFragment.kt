@@ -15,11 +15,18 @@ import jin.contest.ta_android.R
 import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
 import androidx.recyclerview.widget.RecyclerView
+import jin.contest.ta_android.data.model.DiaryResponse
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import jin.contest.ta_android.data.remote.RetrofitClient
 import jin.contest.ta_android.data.repository.DiaryDetailRepository
 import jin.contest.ta_android.ui.home.DiaryViewModel
 
 class MyDiaryFragment : Fragment() {
+
+    private var selectedYear: Int = 0
+    private var selectedMonth: Int = 0
+    private var currentId: Long = 0
+    private var currentDialog: BottomSheetDialogFragment? = null
 
     private var _binding: FragmentMyDiaryBinding? = null
     private val binding get() = _binding!!
@@ -39,16 +46,62 @@ class MyDiaryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         selectYear()
+
         viewModel.diaryDetail.observe(viewLifecycleOwner) { event ->
             val diary = event.getContentIfNotHandled() ?: return@observe
             if (!isPopupVisible) {
                 isPopupVisible = true
-                val dialog = DiaryDetailBottomSheet(diary)
-                dialog.onDismissListener = { isPopupVisible = false }
+                val dialog = DiaryDetailBottomSheet(diary, onDelete = {
+                    viewModel.deleteDiary(currentId)
+                })
+                dialog.onDismissListener = {
+                    isPopupVisible = false
+                }
+                currentDialog = dialog // ← 팝업 참조 저장
                 dialog.show(parentFragmentManager, "DiaryPopup")
             }
         }
+
+        viewModel.deleteSuccess.observe(viewLifecycleOwner) { event ->
+            val success = event.getContentIfNotHandled() ?: return@observe
+            if (success) {
+                Toast.makeText(context, "삭제되었습니다", Toast.LENGTH_SHORT).show()
+                currentDialog?.dismiss() // ← 팝업 닫기
+                viewModel.loadDiaries(selectedYear, selectedMonth, 0, 12) // ← 다시 불러오기
+            } else {
+                Toast.makeText(context, "삭제 실패", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
+            Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
+            val items = diaries.map { diary ->
+                DiaryItem(
+                    day = diary.createdAt.substring(8, 10),
+                    weekday = getWeekdayFromDate(diary.createdAt),
+                    title = diary.title,
+                    preview = diary.preview,
+                    weather = getWeatherIcon(diary.weather.uppercase()),
+                    emotion = getEmotionIcon(diary.emotion.lowercase()),
+                    score = "${diary.emotionPoint}점",
+                    id = diary.diaryId
+                )
+            }
+
+            adapter = MyDiaryAdapter(items, object : OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val clickedItem = items[position]
+                    viewModel.loadDiary(clickedItem.id)
+                    currentId=clickedItem.id
+                }
+            })
+
+            binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.diaryRecyclerView.adapter = adapter
+            adapter.updateItems(items)
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -112,10 +165,11 @@ class MyDiaryFragment : Fragment() {
                 .setView(dialogView)
                 .setNegativeButton("취소", null)
                 .setPositiveButton("확인") { _, _ ->
-                    var selectedYear = yearPicker.value
-                    var selectedMonth = monthPicker.value
+                    selectedYear = yearPicker.value
+                    selectedMonth = monthPicker.value
                     binding.buttonYear.text = "${selectedYear}년 ${selectedMonth}월"
                     floatNode(selectedYear, selectedMonth)
+
                 }
                 .show()
         }
@@ -124,34 +178,6 @@ class MyDiaryFragment : Fragment() {
     private fun floatNode(year : Int , month : Int){
         binding.diaryRecyclerView.adapter = null
         binding.diaryRecyclerView.layoutManager = null
-
-        viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
-            Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
-            val items = diaries.map { diary ->
-                DiaryItem(
-                    day = diary.createdAt.substring(8, 10),
-                    weekday = getWeekdayFromDate(diary.createdAt),
-                    title = diary.title,
-                    preview = diary.preview,
-                    weather = getWeatherIcon(diary.weather.uppercase()),
-                    emotion = getEmotionIcon(diary.emotion.lowercase()),
-                    score = "${diary.emotionPoint}점",
-                    id = diary.diaryId
-                )
-            }
-            adapter = MyDiaryAdapter(items, object : OnItemClickListener {
-                override fun onItemClick(position: Int) {
-                    val clickedItem = items[position]
-                    viewModel.loadDiary(clickedItem.id)
-                }
-
-            })
-
-
-            binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            binding.diaryRecyclerView.adapter = adapter
-            adapter.updateItems(items)
-        }
 
         viewModel.loadDiaries(year, month, 0, 12)
     }

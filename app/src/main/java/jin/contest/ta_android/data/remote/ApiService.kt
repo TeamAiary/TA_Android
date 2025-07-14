@@ -19,6 +19,7 @@ import jin.contest.ta_android.data.model.DiaryDetailResponse
 
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.POST
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -71,4 +72,7 @@ interface ApiService {
 
     @GET("/api/diary/{id}")
     suspend fun getDiaryById(@Path("id") id: Long): Response<DiaryDetailResponse>
+
+    @DELETE("/api/diary/{id}")
+    suspend fun deleteDiary(@Path("id") id: Long): Response<Void>
 }

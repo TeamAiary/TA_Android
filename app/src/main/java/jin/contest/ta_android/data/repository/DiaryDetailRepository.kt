@@ -12,4 +12,8 @@ class DiaryDetailRepository(private val api: ApiService) {
             null
         }
     }
+    suspend fun deleteDiary(id: Long): Boolean {
+        val response = api.deleteDiary(id)
+        return response.isSuccessful
+    }
 }

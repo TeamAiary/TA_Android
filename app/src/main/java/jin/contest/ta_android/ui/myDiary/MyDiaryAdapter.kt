@@ -32,6 +32,7 @@ data class DiaryInfo(
     val content: String,
     val emotion: Int,
     val emotionPoint: String,
+    val id: Long
 )
 
 interface OnItemClickListener {
