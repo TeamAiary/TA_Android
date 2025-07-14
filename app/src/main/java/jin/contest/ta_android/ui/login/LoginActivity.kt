@@ -54,11 +54,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Google 로그인 기능은 추후 구현 예정입니다", Toast.LENGTH_SHORT).show()
         }
 
-        // 비밀번호 찾기
-        binding.tvForgotPassword.setOnClickListener {
-            Toast.makeText(this, "비밀번호 찾기 기능은 추후 구현 예정입니다", Toast.LENGTH_SHORT).show()
-        }
-
         // 회원가입
         binding.tvSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
