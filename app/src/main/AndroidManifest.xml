@@ -48,8 +48,5 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:label="회원가입" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC_6Z6u7jTttkKXvGfbt10YudsiAv92W6g"/>
     </application>
 </manifest>

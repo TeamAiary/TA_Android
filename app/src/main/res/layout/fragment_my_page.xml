@@ -45,7 +45,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/momo"
+                android:src="@drawable/dori"
                 android:scaleType="centerCrop"
                 android:background="@color/note_beige"
                 android:elevation="10dp" />
