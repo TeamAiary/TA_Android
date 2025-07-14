@@ -17,6 +17,7 @@ import jin.contest.ta_android.data.model.MissionClearResponse
 import jin.contest.ta_android.data.model.MissionProgressResponse
 import jin.contest.ta_android.data.model.DiaryDetailResponse
 import jin.contest.ta_android.data.model.CounselListResponse
+import jin.contest.ta_android.data.model.UserInfoResponse
 
 import retrofit2.Response
 import retrofit2.http.Body
@@ -25,6 +26,7 @@ import retrofit2.http.POST
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Path
+import retrofit2.http.Header
 
 
 interface ApiService {
@@ -82,4 +84,9 @@ interface ApiService {
         @Query("city") city: String,
         @Query("district") district: String? = null
     ): Response<CounselListResponse>
+
+    @GET("/api/user")
+    suspend fun getUserInfo(
+        @Header("Cookie") sessionId: String
+    ): retrofit2.Response<UserInfoResponse>
 }
