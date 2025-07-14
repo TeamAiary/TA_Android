@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F9F6F1"
     tools:context=".ui.mission.MissionFragment">
 
     <!-- 상단 타이틀 -->
@@ -16,7 +15,6 @@
         android:textAlignment="center"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:background="#FFF8E1"
         android:padding="16dp"
         android:textColor="#222222" />
 
@@ -25,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#ECECEC"
+        android:background="@color/note_beige"
         android:layout_margin="16dp"
         android:padding="16dp"
         android:layout_gravity="center_horizontal"
@@ -82,7 +80,8 @@
             android:progress="38"
             android:max="100"
             android:progressDrawable="@android:drawable/progress_horizontal"
-            android:backgroundTint="#FFF8E1" />
+            android:progressTint="@color/dark_beige"
+            android:backgroundTint="@color/note_beige" />
     </LinearLayout>
 
     <!-- 미션 리스트 -->
@@ -325,7 +324,6 @@
     <!-- 하단 네비게이션 바 공간 확보 (실제 네비게이션은 Activity에서 관리) -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="#FFF8E1" />
+        android:layout_height="64dp" />
 
 </LinearLayout>
