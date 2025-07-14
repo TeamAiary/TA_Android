@@ -121,15 +121,7 @@ class CounselFragment : Fragment() {
                 val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
                 if (!addresses.isNullOrEmpty()) {
                     val adminArea = addresses[0].adminArea ?: "알 수 없음"
-                    val city = adminArea
-                        .replace("광역시", "")
-                        .replace("특별시", "")
-                        .replace("특별자치시", "")
-                        .replace("특별자치도", "")
-                        .replace("자치시", "")
-                        .replace("자치도", "")
-                        .replace("도", "")
-                        .trim()
+                    val city = adminArea.trim()
                     cityName = city // 도시명 저장
                     binding.tvCounselTitle.text = "주변 상담소 ($city)"
                     // cityName이 세팅된 후에만 상담소 리스트/마커 추가 로직 실행
