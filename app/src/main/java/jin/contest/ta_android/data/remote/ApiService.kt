@@ -16,6 +16,7 @@ import jin.contest.ta_android.data.model.MissionClearRequest
 import jin.contest.ta_android.data.model.MissionClearResponse
 import jin.contest.ta_android.data.model.MissionProgressResponse
 import jin.contest.ta_android.data.model.DiaryDetailResponse
+import jin.contest.ta_android.data.model.CounselListResponse
 
 import retrofit2.Response
 import retrofit2.http.Body
@@ -75,4 +76,10 @@ interface ApiService {
 
     @DELETE("/api/diary/{id}")
     suspend fun deleteDiary(@Path("id") id: Long): Response<Void>
+
+    @GET("/api/counsel/roadname")
+    suspend fun getCounselList(
+        @Query("city") city: String,
+        @Query("district") district: String? = null
+    ): Response<CounselListResponse>
 }
