@@ -131,30 +131,6 @@
             </RadioGroup>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="12dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="역할"
-                android:textColor="#8B7355"
-                android:textSize="16sp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginEnd="16dp" />
-
-            <Spinner
-                android:id="@+id/spinner_role"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/role_array"
-                android:spinnerMode="dropdown"
-                android:layout_gravity="center_vertical" />
-        </LinearLayout>
-
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
