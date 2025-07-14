@@ -5,7 +5,7 @@
     android:id="@+id/emotion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_gradient"
+    android:background="#FFFFFF"
     tools:context=".ui.emotion.EmotionFragment">
 
 
@@ -13,12 +13,13 @@
         android:id="@+id/text_degree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="40dp"
         android:text="오늘의 지수"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:paddingBottom="20dp"
+
+        android:paddingBottom="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -29,6 +30,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_degree">
@@ -55,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:text="행복 지수"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -63,8 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="0"
-                android:textSize="23sp"
+                android:text="1"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <SeekBar
@@ -73,7 +75,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:max="99"
-                android:progress="0" />
+                android:progress="0"
+                android:progressDrawable="@drawable/seek_progress"
+                android:thumb="@drawable/seek_thumb" />
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:text="우울 지수"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -106,8 +110,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="0"
-                android:textSize="23sp"
+                android:text="1"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <SeekBar
@@ -116,7 +120,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:max="99"
-                android:progress="0" />
+                android:progress="0"
+                android:progressDrawable="@drawable/seek_progress"
+                android:thumb="@drawable/seek_thumb" />
         </LinearLayout>
 
         <LinearLayout
@@ -141,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:text="분노 지수"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -149,8 +155,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="0"
-                android:textSize="23sp"
+                android:text="1"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <SeekBar
@@ -158,6 +164,12 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
+                android:progressDrawable="@drawable/seek_progress"
+                android:thumb="@drawable/seek_thumb"
+                android:thumbOffset="0dp"
+                android:minHeight="4dp"
+                android:maxHeight="4dp"
+                android:splitTrack="false"
                 android:max="99"
                 android:progress="0" />
         </LinearLayout>
@@ -177,8 +189,11 @@
             android:id="@+id/button_to_home"
             android:layout_width="200sp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_garam"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="저장하기"
-            app:backgroundTint="#D2B48C"
+            app:backgroundTint="@color/light_green"
             app:cornerRadius="5dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
