@@ -61,7 +61,10 @@
             android:id="@+id/tv_counsel_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F5F5F5" />
+            android:gravity="center_vertical"
+            android:background="#F5F5F5"
+            android:textSize="24sp"
+            android:paddingStart="20sp"/>
 
     </LinearLayout>
 
