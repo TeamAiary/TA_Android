@@ -32,9 +32,9 @@ class DiaryDetailBottomSheet(private val diary: DiaryDetailResponse, private val
         view.findViewById<TextView>(R.id.detailTitle).text = diary.title
         view.findViewById<TextView>(R.id.detailDate).text = diary.createdAt.substring(0,10)
         view.findViewById<TextView>(R.id.detailContent).text = diary.content
-        view.findViewById<ImageView>(R.id.detailWeather).imageAlpha = getWeather(diary.weather)
-        view.findViewById<ImageView>(R.id.detailEmotion).imageAlpha = getEmotion(diary.emotion)
-        view.findViewById<TextView>(R.id.detailContent).text = diary.content
+        view.findViewById<ImageView>(R.id.detailWeather).imageAlpha = getWeather(diary.weather.uppercase())
+        view.findViewById<ImageView>(R.id.detailEmotion).imageAlpha = getEmotion(diary.emotion.lowercase())
+        view.findViewById<TextView>(R.id.detailScore).text = "${diary.emotionPoint}"
 
         val buttonDelete = view.findViewById<Button>(R.id.detailDelete)
         buttonDelete.setOnClickListener {
