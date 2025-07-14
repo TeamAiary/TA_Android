@@ -76,6 +76,9 @@
                 android:layout_marginBottom="30dp"
                 android:max="99"
                 android:progress="0"
+                android:thumbOffset="0dp"
+                android:minHeight="6dp"
+                android:maxHeight="6dp"
                 android:progressDrawable="@drawable/seek_progress"
                 android:thumb="@drawable/seek_thumb" />
         </LinearLayout>
@@ -120,7 +123,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:max="99"
-                android:progress="0"
+                android:thumbOffset="0dp"
+                android:minHeight="6dp"
+                android:maxHeight="6dp"
                 android:progressDrawable="@drawable/seek_progress"
                 android:thumb="@drawable/seek_thumb" />
         </LinearLayout>
@@ -167,8 +172,8 @@
                 android:progressDrawable="@drawable/seek_progress"
                 android:thumb="@drawable/seek_thumb"
                 android:thumbOffset="0dp"
-                android:minHeight="4dp"
-                android:maxHeight="4dp"
+                android:minHeight="6dp"
+                android:maxHeight="6dp"
                 android:splitTrack="false"
                 android:max="99"
                 android:progress="0" />

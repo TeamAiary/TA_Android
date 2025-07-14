@@ -14,7 +14,7 @@
         <!-- 빈 공간 -->
         <View
             android:layout_width="0dp"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent" />
 
@@ -38,7 +38,7 @@
         <!-- 빈 공간 -->
         <View
             android:layout_width="0dp"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent" />
 
@@ -72,7 +72,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:textColor="#5D4E37" />
+                        android:fontFamily="@font/nanum_garam"
+                        android:textSize="18dp"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +88,7 @@
                     app:endIconTint="#8B7355"
                     app:boxStrokeColor="#D2B48C"
                     app:hintTextColor="#8B7355"
+
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -94,6 +96,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
+                        android:fontFamily="@font/nanum_garam"
+                        android:textSize="18dp"
                         android:textColor="#5D4E37" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -105,11 +109,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="로그인"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:textColor="#FFFFFF"
-                    app:backgroundTint="#D2B48C"
+                    app:backgroundTint="@color/light_green"
                     app:cornerRadius="12dp"
+                    android:fontFamily="@font/nanum_garam"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
                     android:layout_marginBottom="16dp" />
 
                 <LinearLayout
