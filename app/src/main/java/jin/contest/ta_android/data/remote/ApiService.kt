@@ -15,12 +15,14 @@ import jin.contest.ta_android.data.model.MissionResponse
 import jin.contest.ta_android.data.model.MissionClearRequest
 import jin.contest.ta_android.data.model.MissionClearResponse
 import jin.contest.ta_android.data.model.MissionProgressResponse
+import jin.contest.ta_android.data.model.DiaryDetailResponse
 
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Path
 
 
 interface ApiService {
@@ -66,4 +68,7 @@ interface ApiService {
 
     @GET("/api/user/mission")
     suspend fun getMissionProgress(): Response<MissionProgressResponse>
+
+    @GET("/api/diary/{id}")
+    suspend fun getDiaryById(@Path("id") id: Long): Response<DiaryDetailResponse>
 }

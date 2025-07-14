@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.view.LayoutInflater
 import jin.contest.ta_android.R
 import android.util.Log
+import android.view.View.OnClickListener
+import android.widget.AdapterView
 import androidx.compose.ui.tooling.preview.Preview
 import jin.contest.ta_android.databinding.ItemDiaryListBinding
 
@@ -19,18 +21,32 @@ data class DiaryItem(
     val preview: String,
     val weather: Int,
     val emotion: Int,
-    val score: String
+    val score: String,
+    val id: Long
 )
 
-class MyDiaryAdapter(private var items: List<DiaryItem>) :
-    RecyclerView.Adapter<MyDiaryAdapter.DiaryViewHolder>() {
+data class DiaryInfo(
+    val title: String,
+    val createdAt: String,
+    val weather: Int,
+    val content: String,
+    val emotion: Int,
+    val emotionPoint: String,
+)
 
+interface OnItemClickListener {
+    fun onItemClick(position: Int)
+}
+
+class MyDiaryAdapter(private var items: List<DiaryItem>, private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<MyDiaryAdapter.DiaryViewHolder>() {
     fun updateItems(newItems: List<DiaryItem>) {
         items = newItems
         notifyDataSetChanged()
     }
     inner class DiaryViewHolder(private val binding: ItemDiaryListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        var id :Long = 0
         fun bind(item: DiaryItem) {
             binding.tvDay.text = item.day
             binding.tvWeekday.text = item.weekday
@@ -39,6 +55,11 @@ class MyDiaryAdapter(private var items: List<DiaryItem>) :
             binding.ivWeather.setImageResource(item.weather)
             binding.ivEmotion.setImageResource(item.emotion)
             binding.tvScore.text = item.score
+            }
+            init {
+            binding.root.setOnClickListener {
+                listener.onItemClick(adapterPosition)
+            }
         }
     }
 

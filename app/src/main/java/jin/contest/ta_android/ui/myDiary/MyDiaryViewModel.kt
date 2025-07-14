@@ -9,16 +9,33 @@ import jin.contest.ta_android.data.model.DiaryResponse
 import jin.contest.ta_android.data.remote.RetrofitClient
 import jin.contest.ta_android.data.repository.DiaryRepository
 import android.util.Log
+import jin.contest.ta_android.data.model.DiaryDetailResponse
+import jin.contest.ta_android.data.repository.DiaryDetailRepository
 import kotlinx.coroutines.launch
 
 class MyDiaryViewModel : ViewModel() {
     private val repository = DiaryRepository(RetrofitClient.apiService)
+    private val detailRepository = DiaryDetailRepository(RetrofitClient.apiService)
 
     private val _diaryList = MutableLiveData<List<DiaryResponse>>()
     val diaryList: LiveData<List<DiaryResponse>> get() = _diaryList
 
+    private val _diaryDetail = MutableLiveData<Event<DiaryDetailResponse>>()
+    val diaryDetail: LiveData<Event<DiaryDetailResponse>> = _diaryDetail
+
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> get() = _errorMessage
+
+    fun loadDiary(id: Long) {
+        viewModelScope.launch {
+            val diary = detailRepository.getDiary(id)
+            diary?.let {
+                _diaryDetail.value = Event(it)
+            }
+        }
+    }
+
+
 
     fun loadDiaries(year: Int, month: Int, page: Int = 0, size: Int = 12) {
         viewModelScope.launch {

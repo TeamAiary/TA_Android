@@ -15,6 +15,8 @@ import jin.contest.ta_android.R
 import androidx.appcompat.app.AlertDialog
 import java.util.Calendar
 import androidx.recyclerview.widget.RecyclerView
+import jin.contest.ta_android.data.remote.RetrofitClient
+import jin.contest.ta_android.data.repository.DiaryDetailRepository
 import jin.contest.ta_android.ui.home.DiaryViewModel
 
 class MyDiaryFragment : Fragment() {
@@ -24,6 +26,8 @@ class MyDiaryFragment : Fragment() {
 
     private val viewModel: MyDiaryViewModel by viewModels()
     private lateinit var adapter: MyDiaryAdapter
+
+    private var isPopupVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +39,15 @@ class MyDiaryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         selectYear()
-
+        viewModel.diaryDetail.observe(viewLifecycleOwner) { event ->
+            val diary = event.getContentIfNotHandled() ?: return@observe
+            if (!isPopupVisible) {
+                isPopupVisible = true
+                val dialog = DiaryDetailBottomSheet(diary)
+                dialog.onDismissListener = { isPopupVisible = false }
+                dialog.show(parentFragmentManager, "DiaryPopup")
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -113,10 +125,6 @@ class MyDiaryFragment : Fragment() {
         binding.diaryRecyclerView.adapter = null
         binding.diaryRecyclerView.layoutManager = null
 
-        adapter = MyDiaryAdapter(emptyList())
-        binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.diaryRecyclerView.adapter = adapter
-
         viewModel.diaryList.observe(viewLifecycleOwner) { diaries ->
             Log.d("MyDiaryFragment", "diaryList observe: ${diaries.size}")
             val items = diaries.map { diary ->
@@ -127,9 +135,21 @@ class MyDiaryFragment : Fragment() {
                     preview = diary.preview,
                     weather = getWeatherIcon(diary.weather.uppercase()),
                     emotion = getEmotionIcon(diary.emotion.lowercase()),
-                    score = "${diary.emotionPoint}점"
+                    score = "${diary.emotionPoint}점",
+                    id = diary.diaryId
                 )
             }
+            adapter = MyDiaryAdapter(items, object : OnItemClickListener {
+                override fun onItemClick(position: Int) {
+                    val clickedItem = items[position]
+                    viewModel.loadDiary(clickedItem.id)
+                }
+
+            })
+
+
+            binding.diaryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.diaryRecyclerView.adapter = adapter
             adapter.updateItems(items)
         }
 

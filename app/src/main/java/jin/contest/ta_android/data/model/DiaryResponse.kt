@@ -6,5 +6,6 @@ data class DiaryResponse(
     val weather: String,
     val preview: String,
     val emotion: String,
-    val emotionPoint: Int
+    val emotionPoint: Int,
+    val diaryId: Long
 ) 
