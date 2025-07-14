@@ -135,10 +135,10 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_diary_title"
+                android:id="@+id/tv_diary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최근에 쓴 내 마음을 확인해봐요"
+                android:text="오늘 작성한 내 마음을 확인해봐요"
                 android:textColor="#666666"
                 android:textStyle="bold"
                 android:textSize="20sp"
@@ -148,7 +148,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_diary"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="#FDFAF6"
                 android:background="@drawable/bg_note_page"
                 android:layout_marginTop="8dp"
@@ -156,6 +156,15 @@
                 android:layout_marginEnd="16dp"
                 app:cardCornerRadius="16dp">
 
+                <TextView
+                    android:id="@+id/tv_diary_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일기 제목"
+                    android:textColor="#666666"
+                    android:textSize="20sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="24dp" />
                 <TextView
                     android:id="@+id/tv_diary_content"
                     android:layout_width="match_parent"

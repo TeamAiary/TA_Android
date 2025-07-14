@@ -27,11 +27,6 @@ class MyPageFragment : Fragment() {
 
         _binding = FragmentMyPageBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textMyPage
-        myPageViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

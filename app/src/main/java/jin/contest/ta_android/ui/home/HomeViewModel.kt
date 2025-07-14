@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import jin.contest.ta_android.data.model.DiaryDetailResponse
 import jin.contest.ta_android.data.model.WeeklyReportResponse
 import jin.contest.ta_android.data.repository.ReportRepository
 import jin.contest.ta_android.data.repository.DiaryRepository

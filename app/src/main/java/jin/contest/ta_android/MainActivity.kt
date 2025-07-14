@@ -7,6 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import jin.contest.ta_android.databinding.ActivityMainBinding
 import androidx.navigation.fragment.NavHostFragment
+import jin.contest.ta_android.ui.emotion.EmotionFragment
+import jin.contest.ta_android.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

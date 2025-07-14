@@ -15,6 +15,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import jin.contest.ta_android.EmotionActivity
+import jin.contest.ta_android.ui.home.HomeFragment
 
 
 //오늘의 감정 점수를 입력할 수 있는 fragment.
@@ -101,7 +103,16 @@ class EmotionFragment : Fragment() {
             )
             viewModel.submitPost(request)
             observeViewModel()
-            val intent = Intent(requireActivity(), MainActivity::class.java)
+
+
+            val homeFragment = HomeFragment()
+            val bundle = Bundle()
+            bundle.putString("title", title)
+            bundle.putString("content", content)
+            homeFragment.arguments = bundle
+
+            val intent = Intent(requireContext(), MainActivity::class.java).apply {
+            }
             startActivity(intent)
 
         }

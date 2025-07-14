@@ -68,10 +68,17 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), WritingActivity::class.java)
             startActivity(intent)
         }
+        val title = arguments?.getString("content")
+        val content = arguments?.getString("content")
+        Log.d("test","${content}")
 
-        // 주변 상담소 카드 클릭 시 CounselFragment로 이동
-        binding.cardCounselLink.setOnClickListener {
-            findNavController().navigate(R.id.action_home_to_counsel)
+        if(content != null){
+            binding.tvDiaryTitle.text=title
+            binding.tvDiaryContent.text=content
+        }
+        else{
+            binding.tvDiaryTitle.text="오늘 작성한 일기가 없습니다"
+            binding.tvDiaryContent.text=""
         }
 
         return root
