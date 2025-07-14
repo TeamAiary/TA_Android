@@ -12,4 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+# API 키 등 민감 정보
 local.properties
