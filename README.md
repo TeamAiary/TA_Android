@@ -16,7 +16,7 @@
 
 |                  ChanWooong                   |
 | :------------------------------------------------: |
-| <img width="240px" src="https://avatars.githubusercontent.com/u/104716006?v=4" /> |
+| <img width="240px" src="https://avatars.githubusercontent.com/u/104729817?s=400&u=941ded46fe9c2a1e28e28850c106f7ff521fb02f&v=4" /> |
 |     [@ChanWooong](https://github.com/ChanWooong) |
 |          National - 🇰🇷 Republic Of Korea            |
 
